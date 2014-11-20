@@ -8,7 +8,7 @@
 
 #import "RotationAwareNavigationController.h"
 #import "ComposeViewController.h"
-#import "MainViewController.h"
+#import "LoopViewController.h"
 
 @interface RotationAwareNavigationController () {
     BOOL _isRotating;

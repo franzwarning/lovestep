@@ -23,6 +23,9 @@
     // Setup navigation stuff
     [self.navigationItem setHidesBackButton:YES];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelComposition:)];
+    
+    // Set the title for the step sequencer
+    self.title = @"Compose A Loop";
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -6,19 +6,17 @@
 //  Copyright (c) 2014 Raymond kennedy. All rights reserved.
 //
 
-#import "MainViewController.h"
+#import "LoopViewController.h"
 #import "RotationAwareNavigationController.h"
 
-@interface MainViewController ()
+@interface LoopViewController ()
 
 @end
 
-@implementation MainViewController
+@implementation LoopViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSLog(@"Frame: (%f, %f, %f, %f)", self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
     
     // Add the right navbar item
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(_addLoop:)];

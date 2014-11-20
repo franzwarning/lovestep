@@ -61,7 +61,7 @@
         <!--Loops-->
         <scene sceneID="WEC-FV-hgc">
             <objects>
-                <viewController id="uJ1-Uh-w4H" customClass="MainViewController" sceneMemberID="viewController">
+                <viewController id="uJ1-Uh-w4H" customClass="LoopViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IXQ-5r-Q4W"/>
                         <viewControllerLayoutGuide type="bottom" id="a4Z-hh-gvw"/>

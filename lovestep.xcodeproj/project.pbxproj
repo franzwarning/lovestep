@@ -17,7 +17,7 @@
 		AFA3D7521A1DBFC300580F5C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFA3D7501A1DBFC300580F5C /* LaunchScreen.xib */; };
 		AFA3D75E1A1DBFC300580F5C /* lovestepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AFA3D75D1A1DBFC300580F5C /* lovestepTests.m */; };
 		AFC4CA531A1E717C000F2FE6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFC4CA521A1E717C000F2FE6 /* AudioToolbox.framework */; };
-		AFC4CA591A1E71B4000F2FE6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC4CA581A1E71B4000F2FE6 /* MainViewController.m */; };
+		AFC4CA591A1E71B4000F2FE6 /* LoopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC4CA581A1E71B4000F2FE6 /* LoopViewController.m */; };
 		AFC4CA5C1A1E71BC000F2FE6 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC4CA5B1A1E71BC000F2FE6 /* ComposeViewController.m */; };
 		AFC4CA611A1E7312000F2FE6 /* SoundGen.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC4CA601A1E7312000F2FE6 /* SoundGen.m */; };
 /* End PBXBuildFile section */
@@ -51,8 +51,8 @@
 		AFA3D75C1A1DBFC300580F5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFA3D75D1A1DBFC300580F5C /* lovestepTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lovestepTests.m; sourceTree = "<group>"; };
 		AFC4CA521A1E717C000F2FE6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		AFC4CA571A1E71B4000F2FE6 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		AFC4CA581A1E71B4000F2FE6 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		AFC4CA571A1E71B4000F2FE6 /* LoopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopViewController.h; sourceTree = "<group>"; };
+		AFC4CA581A1E71B4000F2FE6 /* LoopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopViewController.m; sourceTree = "<group>"; };
 		AFC4CA5A1A1E71BC000F2FE6 /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		AFC4CA5B1A1E71BC000F2FE6 /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		AFC4CA5D1A1E72F3000F2FE6 /* Piano.SF2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Piano.SF2; sourceTree = "<group>"; };
@@ -161,8 +161,8 @@
 			children = (
 				AFA3D7481A1DBFC300580F5C /* LandingViewController.h */,
 				AFA3D7491A1DBFC300580F5C /* LandingViewController.m */,
-				AFC4CA571A1E71B4000F2FE6 /* MainViewController.h */,
-				AFC4CA581A1E71B4000F2FE6 /* MainViewController.m */,
+				AFC4CA571A1E71B4000F2FE6 /* LoopViewController.h */,
+				AFC4CA581A1E71B4000F2FE6 /* LoopViewController.m */,
 				AFC4CA5A1A1E71BC000F2FE6 /* ComposeViewController.h */,
 				AFC4CA5B1A1E71BC000F2FE6 /* ComposeViewController.m */,
 				AF4C06611A1E9DC10018FF26 /* SettingsViewController.h */,
@@ -288,7 +288,7 @@
 				AFA3D7441A1DBFC300580F5C /* main.m in Sources */,
 				AFC4CA5C1A1E71BC000F2FE6 /* ComposeViewController.m in Sources */,
 				AFC4CA611A1E7312000F2FE6 /* SoundGen.m in Sources */,
-				AFC4CA591A1E71B4000F2FE6 /* MainViewController.m in Sources */,
+				AFC4CA591A1E71B4000F2FE6 /* LoopViewController.m in Sources */,
 				AF4C06631A1E9DC10018FF26 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
