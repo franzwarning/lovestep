@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1dC-Ng-uiQ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
-        <!--Landing View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="Cfz-jM-ZMo">
+            <objects>
+                <navigationController id="1dC-Ng-uiQ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XDb-Z1-00a">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="4o2-mn-6QC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XhE-h3-3aa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-640.5" y="229"/>
+        </scene>
+        <!--lovestep-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="LandingViewController" sceneMemberID="viewController">
@@ -17,9 +33,68 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="lovestep" id="ZRa-cd-Smd"/>
+                    <connections>
+                        <segue destination="9WS-S0-swz" kind="presentation" identifier="mainViewController" id="Jrj-Q7-n9G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="144" y="229"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Bp4-jD-mkn">
+            <objects>
+                <navigationController id="9WS-S0-swz" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="I8h-YW-vi0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="uJ1-Uh-w4H" kind="relationship" relationship="rootViewController" id="ja9-I6-syh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="11T-n7-ryn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-640.5" y="930"/>
+        </scene>
+        <!--looper-->
+        <scene sceneID="WEC-FV-hgc">
+            <objects>
+                <viewController id="uJ1-Uh-w4H" customClass="MainViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IXQ-5r-Q4W"/>
+                        <viewControllerLayoutGuide type="bottom" id="a4Z-hh-gvw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="F81-Q4-JdN">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="looper" id="E60-Hd-1Ya"/>
+                    <connections>
+                        <segue destination="etr-v9-T6I" kind="show" identifier="composeViewController" id="95K-qF-PJU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aTH-n4-aqi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="144" y="930"/>
+        </scene>
+        <!--Compose View Controller-->
+        <scene sceneID="BdT-as-yVn">
+            <objects>
+                <viewController id="etr-v9-T6I" customClass="ComposeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="S8O-Ay-KUv"/>
+                        <viewControllerLayoutGuide type="bottom" id="FP0-54-Kek"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mdn-ff-Wx2">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LN5-0L-1bj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="934.5" y="930"/>
         </scene>
     </scenes>
 </document>

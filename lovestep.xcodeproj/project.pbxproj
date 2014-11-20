@@ -14,6 +14,10 @@
 		AFA3D74F1A1DBFC300580F5C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFA3D74E1A1DBFC300580F5C /* Images.xcassets */; };
 		AFA3D7521A1DBFC300580F5C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFA3D7501A1DBFC300580F5C /* LaunchScreen.xib */; };
 		AFA3D75E1A1DBFC300580F5C /* lovestepTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AFA3D75D1A1DBFC300580F5C /* lovestepTests.m */; };
+		AFC4CA531A1E717C000F2FE6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFC4CA521A1E717C000F2FE6 /* AudioToolbox.framework */; };
+		AFC4CA591A1E71B4000F2FE6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC4CA581A1E71B4000F2FE6 /* MainViewController.m */; };
+		AFC4CA5C1A1E71BC000F2FE6 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC4CA5B1A1E71BC000F2FE6 /* ComposeViewController.m */; };
+		AFC4CA611A1E7312000F2FE6 /* SoundGen.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC4CA601A1E7312000F2FE6 /* SoundGen.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,14 @@
 		AFA3D7571A1DBFC300580F5C /* lovestepTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lovestepTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFA3D75C1A1DBFC300580F5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFA3D75D1A1DBFC300580F5C /* lovestepTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lovestepTests.m; sourceTree = "<group>"; };
+		AFC4CA521A1E717C000F2FE6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		AFC4CA571A1E71B4000F2FE6 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		AFC4CA581A1E71B4000F2FE6 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		AFC4CA5A1A1E71BC000F2FE6 /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
+		AFC4CA5B1A1E71BC000F2FE6 /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		AFC4CA5D1A1E72F3000F2FE6 /* Piano.SF2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Piano.SF2; sourceTree = "<group>"; };
+		AFC4CA5F1A1E7312000F2FE6 /* SoundGen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundGen.h; sourceTree = "<group>"; };
+		AFC4CA601A1E7312000F2FE6 /* SoundGen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundGen.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFC4CA531A1E717C000F2FE6 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +76,7 @@
 		AFA3D7351A1DBFC300580F5C = {
 			isa = PBXGroup;
 			children = (
+				AFC4CA521A1E717C000F2FE6 /* AudioToolbox.framework */,
 				AFA3D7401A1DBFC300580F5C /* lovestep */,
 				AFA3D75A1A1DBFC300580F5C /* lovestepTests */,
 				AFA3D73F1A1DBFC300580F5C /* Products */,
@@ -81,13 +95,10 @@
 		AFA3D7401A1DBFC300580F5C /* lovestep */ = {
 			isa = PBXGroup;
 			children = (
-				AFA3D7451A1DBFC300580F5C /* AppDelegate.h */,
-				AFA3D7461A1DBFC300580F5C /* AppDelegate.m */,
-				AFA3D7481A1DBFC300580F5C /* LandingViewController.h */,
-				AFA3D7491A1DBFC300580F5C /* LandingViewController.m */,
-				AFA3D74B1A1DBFC300580F5C /* Main.storyboard */,
-				AFA3D74E1A1DBFC300580F5C /* Images.xcassets */,
-				AFA3D7501A1DBFC300580F5C /* LaunchScreen.xib */,
+				AFC4CA5E1A1E72F7000F2FE6 /* SoundGen */,
+				AFC4CA561A1E719D000F2FE6 /* ViewControllers */,
+				AFC4CA551A1E7193000F2FE6 /* Resources */,
+				AFC4CA541A1E7186000F2FE6 /* Default */,
 				AFA3D7411A1DBFC300580F5C /* Supporting Files */,
 			);
 			path = lovestep;
@@ -117,6 +128,48 @@
 				AFA3D75C1A1DBFC300580F5C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AFC4CA541A1E7186000F2FE6 /* Default */ = {
+			isa = PBXGroup;
+			children = (
+				AFA3D7451A1DBFC300580F5C /* AppDelegate.h */,
+				AFA3D7461A1DBFC300580F5C /* AppDelegate.m */,
+				AFA3D74B1A1DBFC300580F5C /* Main.storyboard */,
+			);
+			name = Default;
+			sourceTree = "<group>";
+		};
+		AFC4CA551A1E7193000F2FE6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AFC4CA5D1A1E72F3000F2FE6 /* Piano.SF2 */,
+				AFA3D74E1A1DBFC300580F5C /* Images.xcassets */,
+				AFA3D7501A1DBFC300580F5C /* LaunchScreen.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		AFC4CA561A1E719D000F2FE6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AFA3D7481A1DBFC300580F5C /* LandingViewController.h */,
+				AFA3D7491A1DBFC300580F5C /* LandingViewController.m */,
+				AFC4CA571A1E71B4000F2FE6 /* MainViewController.h */,
+				AFC4CA581A1E71B4000F2FE6 /* MainViewController.m */,
+				AFC4CA5A1A1E71BC000F2FE6 /* ComposeViewController.h */,
+				AFC4CA5B1A1E71BC000F2FE6 /* ComposeViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		AFC4CA5E1A1E72F7000F2FE6 /* SoundGen */ = {
+			isa = PBXGroup;
+			children = (
+				AFC4CA5F1A1E7312000F2FE6 /* SoundGen.h */,
+				AFC4CA601A1E7312000F2FE6 /* SoundGen.m */,
+			);
+			name = SoundGen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +275,9 @@
 				AFA3D74A1A1DBFC300580F5C /* LandingViewController.m in Sources */,
 				AFA3D7471A1DBFC300580F5C /* AppDelegate.m in Sources */,
 				AFA3D7441A1DBFC300580F5C /* main.m in Sources */,
+				AFC4CA5C1A1E71BC000F2FE6 /* ComposeViewController.m in Sources */,
+				AFC4CA611A1E7312000F2FE6 /* SoundGen.m in Sources */,
+				AFC4CA591A1E71B4000F2FE6 /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +468,7 @@
 				AFA3D7631A1DBFC300580F5C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AFA3D7641A1DBFC300580F5C /* Build configuration list for PBXNativeTarget "lovestepTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +477,7 @@
 				AFA3D7661A1DBFC300580F5C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
