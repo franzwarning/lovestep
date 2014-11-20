@@ -17,6 +17,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSLog(@"Frame: (%f, %f, %f, %f)", self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+    
+    // Setup navigation stuff
+    [self.navigationItem setHidesBackButton:YES];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelComposition:)];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -24,10 +30,10 @@
     [(RotationAwareNavigationController *)self.navigationController orientLeft];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)cancelComposition:(id)sender
 {
-    [super viewWillDisappear:animated];
     [(RotationAwareNavigationController *)self.navigationController orientPortrait];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
