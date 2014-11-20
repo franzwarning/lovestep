@@ -8,8 +8,11 @@
 
 #import "ComposeViewController.h"
 #import "RotationAwareNavigationController.h"
+#import "SoundGen.h"
 
-@interface ComposeViewController ()
+@interface ComposeViewController (){
+    SoundGen *_soundGen;
+}
 
 @end
 
@@ -22,10 +25,13 @@
     
     // Setup navigation stuff
     [self.navigationItem setHidesBackButton:YES];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelComposition:)];
-    
-    // Set the title for the step sequencer
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(_cancelComposition:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_addLoop:)];
     self.title = @"Compose A Loop";
+
+    // Setup SoundGen stuff
+    NSURL *presetURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Piano" ofType:@"sf2"]];
+    _soundGen = [[SoundGen alloc] initWithSoundFontURL:presetURL patchNumber:1];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -33,7 +39,15 @@
     [(RotationAwareNavigationController *)self.navigationController orientLeft];
 }
 
-- (void)cancelComposition:(id)sender
+- (void)_addLoop:(id)sender
+{
+    // Add loop logic here
+    [_soundGen playMidiNote:44 velocity:80];
+    [_soundGen stopPlayingMidiNote:44];
+
+}
+
+- (void)_cancelComposition:(id)sender
 {
     [(RotationAwareNavigationController *)self.navigationController orientPortrait];
     [self.navigationController popViewControllerAnimated:YES];
