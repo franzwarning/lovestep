@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF4C06631A1E9DC10018FF26 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4C06621A1E9DC10018FF26 /* SettingsViewController.m */; };
+		AF4C06661A1E9F980018FF26 /* RotationAwareNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4C06651A1E9F980018FF26 /* RotationAwareNavigationController.m */; };
 		AFA3D7441A1DBFC300580F5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFA3D7431A1DBFC300580F5C /* main.m */; };
 		AFA3D7471A1DBFC300580F5C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFA3D7461A1DBFC300580F5C /* AppDelegate.m */; };
 		AFA3D74A1A1DBFC300580F5C /* LandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFA3D7491A1DBFC300580F5C /* LandingViewController.m */; };
@@ -31,6 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AF4C06611A1E9DC10018FF26 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		AF4C06621A1E9DC10018FF26 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		AF4C06641A1E9F980018FF26 /* RotationAwareNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotationAwareNavigationController.h; sourceTree = "<group>"; };
+		AF4C06651A1E9F980018FF26 /* RotationAwareNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotationAwareNavigationController.m; sourceTree = "<group>"; };
 		AFA3D73E1A1DBFC300580F5C /* lovestep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lovestep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFA3D7421A1DBFC300580F5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFA3D7431A1DBFC300580F5C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -159,6 +165,10 @@
 				AFC4CA581A1E71B4000F2FE6 /* MainViewController.m */,
 				AFC4CA5A1A1E71BC000F2FE6 /* ComposeViewController.h */,
 				AFC4CA5B1A1E71BC000F2FE6 /* ComposeViewController.m */,
+				AF4C06611A1E9DC10018FF26 /* SettingsViewController.h */,
+				AF4C06621A1E9DC10018FF26 /* SettingsViewController.m */,
+				AF4C06641A1E9F980018FF26 /* RotationAwareNavigationController.h */,
+				AF4C06651A1E9F980018FF26 /* RotationAwareNavigationController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -274,10 +284,12 @@
 			files = (
 				AFA3D74A1A1DBFC300580F5C /* LandingViewController.m in Sources */,
 				AFA3D7471A1DBFC300580F5C /* AppDelegate.m in Sources */,
+				AF4C06661A1E9F980018FF26 /* RotationAwareNavigationController.m in Sources */,
 				AFA3D7441A1DBFC300580F5C /* main.m in Sources */,
 				AFC4CA5C1A1E71BC000F2FE6 /* ComposeViewController.m in Sources */,
 				AFC4CA611A1E7312000F2FE6 /* SoundGen.m in Sources */,
 				AFC4CA591A1E71B4000F2FE6 /* MainViewController.m in Sources */,
+				AF4C06631A1E9DC10018FF26 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +412,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = lovestep/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -410,6 +423,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = lovestep/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

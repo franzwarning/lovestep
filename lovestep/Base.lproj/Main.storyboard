@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1dC-Ng-uiQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1dC-Ng-uiQ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Rotation Aware Navigation Controller-->
         <scene sceneID="Cfz-jM-ZMo">
             <objects>
-                <navigationController id="1dC-Ng-uiQ" sceneMemberID="viewController">
+                <navigationController id="1dC-Ng-uiQ" customClass="RotationAwareNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XDb-Z1-00a">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -42,10 +42,10 @@
             </objects>
             <point key="canvasLocation" x="144" y="229"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Rotation Aware Navigation Controller-->
         <scene sceneID="Bp4-jD-mkn">
             <objects>
-                <navigationController id="9WS-S0-swz" sceneMemberID="viewController">
+                <navigationController id="9WS-S0-swz" customClass="RotationAwareNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="I8h-YW-vi0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -58,7 +58,7 @@
             </objects>
             <point key="canvasLocation" x="-640.5" y="930"/>
         </scene>
-        <!--looper-->
+        <!--Loops-->
         <scene sceneID="WEC-FV-hgc">
             <objects>
                 <viewController id="uJ1-Uh-w4H" customClass="MainViewController" sceneMemberID="viewController">
@@ -67,10 +67,11 @@
                         <viewControllerLayoutGuide type="bottom" id="a4Z-hh-gvw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="F81-Q4-JdN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="looper" id="E60-Hd-1Ya"/>
+                    <navigationItem key="navigationItem" title="Loops" id="E60-Hd-1Ya"/>
                     <connections>
                         <segue destination="etr-v9-T6I" kind="show" identifier="composeViewController" id="95K-qF-PJU"/>
                     </connections>
@@ -88,6 +89,7 @@
                         <viewControllerLayoutGuide type="bottom" id="FP0-54-Kek"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mdn-ff-Wx2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
