@@ -18,7 +18,6 @@ static const NSInteger kBaseMidiNote = 48;
     NSMutableArray *_lastNotes;
     NSDate *_startTime;
     NSInteger _counter;
-    Loop *_activeLoop;
     SoundGen *_soundGen;
 }
 
@@ -65,6 +64,10 @@ static BeatBrain *sharedBrain = nil;
 
 - (void)_playBeat:(NSInteger)beat {
     
+    if ([self.bbDelegate respondsToSelector:@selector(didChangeBeat:)]) {
+        [self.bbDelegate didChangeBeat:beat];
+    }
+    
     [_soundGen stopPlayingAllNotes];
     
     for (Loop *loop in _loops) {
@@ -77,7 +80,7 @@ static BeatBrain *sharedBrain = nil;
 - (void)_playColumn:(NSInteger)column forLoop:(Loop *)loop {
     for (int j = 0; j < kOctave; j++) {
         if ([loop.grid[column][j] boolValue]) {
-            [_soundGen playMidiNote:(j+kBaseMidiNote) velocity:90];
+            [_soundGen playMidiNote:(kBaseMidiNote - j) velocity:90];
         }
     }
 }

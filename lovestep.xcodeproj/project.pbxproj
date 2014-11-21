@@ -10,6 +10,8 @@
 		AF2023271A1EC82000EDDEDA /* Loop.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2023261A1EC82000EDDEDA /* Loop.m */; };
 		AF20232A1A1ECA0100EDDEDA /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2023291A1ECA0100EDDEDA /* Instrument.m */; };
 		AF20232D1A1ECAEA00EDDEDA /* BeatBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = AF20232C1A1ECAEA00EDDEDA /* BeatBrain.m */; };
+		AF2023301A1EDB6E00EDDEDA /* StepSequencerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF20232F1A1EDB6E00EDDEDA /* StepSequencerView.m */; };
+		AF2023331A1EDB7A00EDDEDA /* CellView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2023321A1EDB7A00EDDEDA /* CellView.m */; };
 		AF4C06631A1E9DC10018FF26 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4C06621A1E9DC10018FF26 /* SettingsViewController.m */; };
 		AF4C06661A1E9F980018FF26 /* RotationAwareNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4C06651A1E9F980018FF26 /* RotationAwareNavigationController.m */; };
 		AF4C06681A1EAB6F0018FF26 /* Piano.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = AF4C06671A1EAB6F0018FF26 /* Piano.sf2 */; };
@@ -43,6 +45,10 @@
 		AF2023291A1ECA0100EDDEDA /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
 		AF20232B1A1ECAEA00EDDEDA /* BeatBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatBrain.h; sourceTree = "<group>"; };
 		AF20232C1A1ECAEA00EDDEDA /* BeatBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatBrain.m; sourceTree = "<group>"; };
+		AF20232E1A1EDB6E00EDDEDA /* StepSequencerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepSequencerView.h; sourceTree = "<group>"; };
+		AF20232F1A1EDB6E00EDDEDA /* StepSequencerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StepSequencerView.m; sourceTree = "<group>"; };
+		AF2023311A1EDB7A00EDDEDA /* CellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellView.h; sourceTree = "<group>"; };
+		AF2023321A1EDB7A00EDDEDA /* CellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellView.m; sourceTree = "<group>"; };
 		AF4C06611A1E9DC10018FF26 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		AF4C06621A1E9DC10018FF26 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		AF4C06641A1E9F980018FF26 /* RotationAwareNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotationAwareNavigationController.h; sourceTree = "<group>"; };
@@ -92,6 +98,10 @@
 		AF2023231A1EC3B400EDDEDA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AF20232E1A1EDB6E00EDDEDA /* StepSequencerView.h */,
+				AF20232F1A1EDB6E00EDDEDA /* StepSequencerView.m */,
+				AF2023311A1EDB7A00EDDEDA /* CellView.h */,
+				AF2023321A1EDB7A00EDDEDA /* CellView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -323,6 +333,8 @@
 				AFC4CA5C1A1E71BC000F2FE6 /* ComposeViewController.m in Sources */,
 				AF20232A1A1ECA0100EDDEDA /* Instrument.m in Sources */,
 				AFC4CA611A1E7312000F2FE6 /* SoundGen.m in Sources */,
+				AF2023331A1EDB7A00EDDEDA /* CellView.m in Sources */,
+				AF2023301A1EDB6E00EDDEDA /* StepSequencerView.m in Sources */,
 				AF20232D1A1ECAEA00EDDEDA /* BeatBrain.m in Sources */,
 				AFC4CA591A1E71B4000F2FE6 /* LoopViewController.m in Sources */,
 				AF4C06631A1E9DC10018FF26 /* SettingsViewController.m in Sources */,

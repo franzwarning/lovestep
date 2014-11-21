@@ -20,4 +20,6 @@ static const NSInteger kOctave = 12;
 @property (nonatomic) NSInteger user;
 @property (nonatomic) Instrument *instrument;
 
+- (id)initWithLength:(NSInteger)length name:(NSString *)name instrument:(Instrument *)instrument user:(NSInteger)user;
+
 @end

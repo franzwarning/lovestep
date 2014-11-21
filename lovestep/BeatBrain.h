@@ -8,11 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol BeatBrainDelegate <NSObject>
+
+- (void)didChangeBeat:(NSInteger)beat;
+
+@end
+
 @class Loop;
 
 @interface BeatBrain : NSObject
 
 @property (nonatomic) NSInteger bpm;
+@property (nonatomic, strong) Loop *activeLoop;
+@property (nonatomic, strong) id <BeatBrainDelegate>bbDelegate;
 
 + (id)sharedBrain;
 

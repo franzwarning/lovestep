@@ -16,31 +16,32 @@
 
 @implementation Loop
 
-- (id)init
-{
+
+- (id)initWithLength:(NSInteger)length name:(NSString *)name instrument:(Instrument *)instrument user:(NSInteger)user {
     self = [super init];
     if (self) {
-        self.length = 16;
-        self.name = @"default_name";
-        self.grid = [[NSMutableArray alloc] init];
+        self.length = length;
+        self.name = name;
+        self.instrument = instrument;
+        self.user = user;
         
-        for (int i = 0; i < self.length; i++) {
-            NSMutableArray *column = [[NSMutableArray alloc] init];
-            
-            for (int j = 0; j < kOctave; j++) {
-                
-                if (j == 0) {
-                   column[j] = [NSNumber numberWithBool:YES];
-                } else {
-                    column[j] = [NSNumber numberWithBool:NO];
-                }
-                
-            }
-            
-            self.grid[i] = column;
-        }
+        // Clear the grid
+        self.grid = [[NSMutableArray alloc] init];
+        [self _emptyGrid];
     }
+    
     return self;
+}
+
+- (void)_emptyGrid {
+    for (int i = 0; i < self.length; i++) {
+        NSMutableArray *column = [[NSMutableArray alloc] init];
+        for (int j = 0; j < kOctave; j++) {
+            column[j] = [NSNumber numberWithBool:NO];
+        }
+        
+        self.grid[i] = column;
+    }
 }
 
 @end
