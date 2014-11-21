@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF2023271A1EC82000EDDEDA /* Loop.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2023261A1EC82000EDDEDA /* Loop.m */; };
+		AF20232A1A1ECA0100EDDEDA /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2023291A1ECA0100EDDEDA /* Instrument.m */; };
+		AF20232D1A1ECAEA00EDDEDA /* BeatBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = AF20232C1A1ECAEA00EDDEDA /* BeatBrain.m */; };
 		AF4C06631A1E9DC10018FF26 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4C06621A1E9DC10018FF26 /* SettingsViewController.m */; };
 		AF4C06661A1E9F980018FF26 /* RotationAwareNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4C06651A1E9F980018FF26 /* RotationAwareNavigationController.m */; };
 		AF4C06681A1EAB6F0018FF26 /* Piano.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = AF4C06671A1EAB6F0018FF26 /* Piano.sf2 */; };
@@ -34,6 +37,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AF2023251A1EC82000EDDEDA /* Loop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loop.h; sourceTree = "<group>"; };
+		AF2023261A1EC82000EDDEDA /* Loop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Loop.m; sourceTree = "<group>"; };
+		AF2023281A1ECA0100EDDEDA /* Instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrument.h; sourceTree = "<group>"; };
+		AF2023291A1ECA0100EDDEDA /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
+		AF20232B1A1ECAEA00EDDEDA /* BeatBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatBrain.h; sourceTree = "<group>"; };
+		AF20232C1A1ECAEA00EDDEDA /* BeatBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeatBrain.m; sourceTree = "<group>"; };
 		AF4C06611A1E9DC10018FF26 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		AF4C06621A1E9DC10018FF26 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		AF4C06641A1E9F980018FF26 /* RotationAwareNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotationAwareNavigationController.h; sourceTree = "<group>"; };
@@ -80,6 +89,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF2023231A1EC3B400EDDEDA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		AF2023241A1EC80F00EDDEDA /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				AF2023251A1EC82000EDDEDA /* Loop.h */,
+				AF2023261A1EC82000EDDEDA /* Loop.m */,
+				AF2023281A1ECA0100EDDEDA /* Instrument.h */,
+				AF2023291A1ECA0100EDDEDA /* Instrument.m */,
+				AF20232B1A1ECAEA00EDDEDA /* BeatBrain.h */,
+				AF20232C1A1ECAEA00EDDEDA /* BeatBrain.m */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
 		AFA3D7351A1DBFC300580F5C = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +131,8 @@
 		AFA3D7401A1DBFC300580F5C /* lovestep */ = {
 			isa = PBXGroup;
 			children = (
+				AF2023241A1EC80F00EDDEDA /* Objects */,
+				AF2023231A1EC3B400EDDEDA /* Views */,
 				AFC4CA5E1A1E72F7000F2FE6 /* SoundGen */,
 				AFC4CA561A1E719D000F2FE6 /* ViewControllers */,
 				AFC4CA551A1E7193000F2FE6 /* Resources */,
@@ -287,9 +318,12 @@
 				AFA3D74A1A1DBFC300580F5C /* LandingViewController.m in Sources */,
 				AFA3D7471A1DBFC300580F5C /* AppDelegate.m in Sources */,
 				AF4C06661A1E9F980018FF26 /* RotationAwareNavigationController.m in Sources */,
+				AF2023271A1EC82000EDDEDA /* Loop.m in Sources */,
 				AFA3D7441A1DBFC300580F5C /* main.m in Sources */,
 				AFC4CA5C1A1E71BC000F2FE6 /* ComposeViewController.m in Sources */,
+				AF20232A1A1ECA0100EDDEDA /* Instrument.m in Sources */,
 				AFC4CA611A1E7312000F2FE6 /* SoundGen.m in Sources */,
+				AF20232D1A1ECAEA00EDDEDA /* BeatBrain.m in Sources */,
 				AFC4CA591A1E71B4000F2FE6 /* LoopViewController.m in Sources */,
 				AF4C06631A1E9DC10018FF26 /* SettingsViewController.m in Sources */,
 			);
@@ -414,7 +448,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = lovestep/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -425,7 +459,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = lovestep/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

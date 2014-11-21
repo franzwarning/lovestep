@@ -7,6 +7,7 @@
 //
 
 #import "LandingViewController.h"
+#import "BeatBrain.h"
 
 @interface LandingViewController () {
     UIScrollView *_scrollView;
@@ -53,6 +54,8 @@ static const CGFloat kButtonHeight = 100.f;
 }
 
 - (void)_createNewSession:(id)sender {
+    [[BeatBrain sharedBrain] begin];
+
     [self performSegueWithIdentifier:@"mainViewController" sender:self];
 }
 

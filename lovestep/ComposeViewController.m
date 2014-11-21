@@ -9,6 +9,9 @@
 #import "ComposeViewController.h"
 #import "RotationAwareNavigationController.h"
 #import "SoundGen.h"
+#import "Loop.h"
+#import "Instrument.h"
+#import "BeatBrain.h"
 
 @interface ComposeViewController (){
     SoundGen *_soundGen;
@@ -28,22 +31,23 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(_cancelComposition:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_addLoop:)];
     self.title = @"Compose A Loop";
-
-    // Setup SoundGen stuff
-    NSURL *presetURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Piano" ofType:@"sf2"]];
-    _soundGen = [[SoundGen alloc] initWithSoundFontURL:presetURL patchNumber:1];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [(RotationAwareNavigationController *)self.navigationController orientLeft];
+    
+    // Create test loop
+    Loop *newLoop = [[Loop alloc] init];
+    newLoop.name = @"test loop";
+    newLoop.instrument = [[Instrument alloc] initWithName:@"piano" soundFont:@"Piano"];
+    
+    [[BeatBrain sharedBrain] addLoop:newLoop];
 }
 
 - (void)_addLoop:(id)sender
 {
     // Add loop logic here
-    [_soundGen playMidiNote:44 velocity:80];
-    [_soundGen stopPlayingMidiNote:44];
 
 }
 

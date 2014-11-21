@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "BeatBrain.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +17,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [BeatBrain sharedBrain];
+    
     // Override point for customization after application launch.
     return YES;
 }
