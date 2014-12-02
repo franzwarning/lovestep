@@ -15,6 +15,9 @@
 #import "StepSequencerView.h"
 #import "CellView.h"
 
+static const NSInteger kControlXPadding = 10;
+static const NSInteger kControlStartY = 44;
+
 @interface ComposeViewController () <StepSequencerDelegate, BeatBrainDelegate> {
     SoundGen *_soundGen;
     StepSequencerView *_ssv;
@@ -38,6 +41,9 @@
     
     // Setup the step sequencer view
     [self _setupStepSequencerView];
+    
+    // Setup the step sequencer controls
+    [self _setupControls];
     
     // Setup the beat brain
     _activeLoop = [[Loop alloc] initWithLength:16
@@ -67,6 +73,19 @@
     BOOL isOn = cell.isOn;
     
     _activeLoop.grid[col][row] = [NSNumber numberWithBool:isOn];
+}
+
+- (void)_setupControls {
+    UIButton *addLoopButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [addLoopButton setTitle:@"Add Loop" forState:UIControlStateNormal];
+    [addLoopButton.titleLabel setFont:[UIFont systemFontOfSize:13.f]];
+    [addLoopButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [addLoopButton setFrame:CGRectMake(kControlXPadding, kControlStartY, 80, 50)];
+    [addLoopButton.layer setBorderColor:[UIColor color].CGColor];
+    [addLoopButton.layer setBorderWidth:3.0f];
+    [addLoopButton.layer setCornerRadius:6.f];
+    [addLoopButton setTitleColor:[UIColor gree] forState:<#(UIControlState)#>]
+    [self.view addSubview:addLoopButton];
 }
 
 - (void)_setupStepSequencerView {

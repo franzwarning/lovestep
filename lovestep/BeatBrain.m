@@ -10,7 +10,7 @@
 #import "SoundGen.h"
 #import "Loop.h"
 
-static const NSInteger kBaseMidiNote = 48;
+static const NSInteger kBaseMidiNote = 60;
 
 @interface BeatBrain ()  {
     NSTimer *_timer;
@@ -44,7 +44,7 @@ static BeatBrain *sharedBrain = nil;
 
 - (void)_setupBrain {
     _loops = [[NSMutableArray alloc] init];
-    self.bpm = 120;
+    self.bpm = 180;
     _counter = 0;
     
     // Setup SoundGen stuff

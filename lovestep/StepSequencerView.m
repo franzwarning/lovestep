@@ -31,6 +31,8 @@ static const CGFloat kCellMargin = 5;
     return self;
 }
 
+#pragma mark View Setup
+
 - (void)_setupGrid {
     
     CGFloat cellWidth = (self.frame.size.width - ((kNumCols + 1) * kCellMargin)) / kNumCols;
