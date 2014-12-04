@@ -16,10 +16,14 @@
 
 @end
 
+static const CGFloat kNumRows = 12;
+static const CGFloat kNumCols = 16;
+
 @interface StepSequencerView : UIView
 
 @property (nonatomic, strong) id <StepSequencerDelegate>delegate;
 
 - (void)beatDidChange:(NSInteger)beat;
+- (void)clearGrid;
 
 @end
