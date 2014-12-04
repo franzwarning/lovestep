@@ -28,6 +28,7 @@
 		AFC4CA611A1E7312000F2FE6 /* SoundGen.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC4CA601A1E7312000F2FE6 /* SoundGen.m */; };
 		AFE764461A2FEBCF00784D35 /* bass.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = AFE764451A2FEBCF00784D35 /* bass.sf2 */; };
 		AFE764551A2FEE4800784D35 /* guitar.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = AFE764531A2FEE4800784D35 /* guitar.sf2 */; };
+		AFE764601A30024B00784D35 /* drum.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = AFE7645F1A30024B00784D35 /* drum.sf2 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		AFC4CA601A1E7312000F2FE6 /* SoundGen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundGen.m; sourceTree = "<group>"; };
 		AFE764451A2FEBCF00784D35 /* bass.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bass.sf2; sourceTree = "<group>"; };
 		AFE764531A2FEE4800784D35 /* guitar.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = guitar.sf2; sourceTree = "<group>"; };
+		AFE7645F1A30024B00784D35 /* drum.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = drum.sf2; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +197,7 @@
 		AFC4CA551A1E7193000F2FE6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AFE7645F1A30024B00784D35 /* drum.sf2 */,
 				AFE764531A2FEE4800784D35 /* guitar.sf2 */,
 				AFE764451A2FEBCF00784D35 /* bass.sf2 */,
 				AF4C06671A1EAB6F0018FF26 /* piano.sf2 */,
@@ -279,6 +282,7 @@
 				TargetAttributes = {
 					AFA3D73D1A1DBFC300580F5C = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = E6K9T3S697;
 					};
 					AFA3D7561A1DBFC300580F5C = {
 						CreatedOnToolsVersion = 6.1;
@@ -310,6 +314,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFE764601A30024B00784D35 /* drum.sf2 in Resources */,
 				AF4C06691A1EAB9E0018FF26 /* LaunchScreen.xib in Resources */,
 				AFE764551A2FEE4800784D35 /* guitar.sf2 in Resources */,
 				AF4C066A1A1EAB9E0018FF26 /* Main.storyboard in Resources */,
@@ -467,10 +472,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = lovestep/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -478,10 +486,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = lovestep/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

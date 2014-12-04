@@ -18,9 +18,15 @@
 
 @interface BeatBrain : NSObject
 
+typedef enum {
+   kScaleTypePentatonic,
+   kScaleTypeDiatonic
+} ScaleType;
+
 @property (nonatomic) NSInteger bpm;
 @property (nonatomic, strong) Loop *activeLoop;
 @property (nonatomic, strong) id <BeatBrainDelegate>bbDelegate;
+@property (nonatomic) ScaleType scale;
 
 + (id)sharedBrain;
 

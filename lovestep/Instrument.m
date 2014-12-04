@@ -10,13 +10,31 @@
 
 @implementation Instrument
 
-- (id)initWithName:(NSString *)name soundFont:(NSString *)soundFont {
-    self = [super init];
-    if (self)  {
-        self.name = name;
-        self.soundFont = soundFont;
+- (id) initWithType:(InstrumentType)type {
+   self = [super init];
+   if (self) {
+      self.type = type;
+   }
+   return self;
+}
+
+- (NSString *)soundFontForInstrumentType:(InstrumentType)instrumentType {
+    switch (self.type) {
+        case kInstrumentTypePiano:  return @"piano";
+        case kInstrumentTypeDrums:  return @"drum";
+        case kInstrumentTypeGuitar: return @"guitar";
+        case kInstrumentTypeBass:   return @"bass";
     }
-    return self;
+}
+
+- (NSString *)getTypeName {
+   switch (self.type) {
+      case kInstrumentTypePiano:  return @"Piano";
+      case kInstrumentTypeDrums:  return @"Drums";
+      case kInstrumentTypeGuitar: return @"Guitar";
+      case kInstrumentTypeBass:   return @"Bass";
+   }
+   return @"Instrument";
 }
 
 @end

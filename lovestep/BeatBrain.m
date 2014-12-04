@@ -11,8 +11,10 @@
 #import "Loop.h"
 #import "Instrument.h"
 
-static const NSInteger kBaseMidiNote = 60;
 static const NSInteger kMidiNoteVelocity = 90;
+static const NSInteger kBaseMidiNote = 48;
+static const int kMinorPentatonicIntervals[] = { 0,  3,  5,  7, 10, 12, 15, 17, 19, 22, 24, 27, 29, 31, 34};
+static const int kMajorDiatonicIntervals[] = { 0,  2,  4,  5,  7,  9, 11, 12, 14, 16, 17, 19, 21, 23 };
 
 @interface BeatBrain ()  {
     NSTimer *_timer;
@@ -51,6 +53,7 @@ static BeatBrain *sharedBrain = nil;
 - (void)_setupBrain {
     _loops = [[NSMutableArray alloc] init];
     self.bpm = 180;
+    self.scale = kScaleTypePentatonic;
     _counter = 0;
     
     _soundGens = [[NSMutableArray alloc] init];
@@ -60,13 +63,13 @@ static BeatBrain *sharedBrain = nil;
     _guitarSoundGen = [[SoundGen alloc] initWithSoundFontURL:guitarURL patchNumber:1];
     
     NSURL *bassURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"bass" ofType:@"sf2"]];
-    _guitarSoundGen = [[SoundGen alloc] initWithSoundFontURL:bassURL patchNumber:1];
+    _bassSoundGen = [[SoundGen alloc] initWithSoundFontURL:bassURL patchNumber:1];
     
-//    NSURL *drumURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"drum" ofType:@"sf2"]];
-//    _guitarSoundGen = [[SoundGen alloc] initWithSoundFontURL:drumURL patchNumber:1];
+    NSURL *drumURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"drum" ofType:@"sf2"]];
+    _drumSoundGen = [[SoundGen alloc] initWithSoundFontURL:drumURL patchNumber:7];
     
     NSURL *pianoURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"piano" ofType:@"sf2"]];
-    _guitarSoundGen = [[SoundGen alloc] initWithSoundFontURL:pianoURL patchNumber:1];
+    _pianoSoundGen = [[SoundGen alloc] initWithSoundFontURL:pianoURL patchNumber:1];
     
     [_soundGens addObject:_guitarSoundGen];
     [_soundGens addObject:_bassSoundGen];
@@ -104,7 +107,12 @@ static BeatBrain *sharedBrain = nil;
 - (void)_playColumn:(NSInteger)column forLoop:(Loop *)loop {
     for (int j = 0; j < kOctave; j++) {
         if ([loop.grid[column][j] boolValue]) {
-            [self _playNote:(kBaseMidiNote - j) withInstrumentType:loop.instrument.type];
+
+            int step = kOctave - j - 1;
+            int midi = kBaseMidiNote + kMinorPentatonicIntervals[step];
+            
+            [self _playNote:midi withInstrumentType:loop.instrument.type];
+
         }
     }
 }
