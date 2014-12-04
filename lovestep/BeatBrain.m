@@ -9,8 +9,10 @@
 #import "BeatBrain.h"
 #import "SoundGen.h"
 #import "Loop.h"
+#import "Instrument.h"
 
 static const NSInteger kBaseMidiNote = 60;
+static const NSInteger kMidiNoteVelocity = 90;
 
 @interface BeatBrain ()  {
     NSTimer *_timer;
@@ -18,7 +20,11 @@ static const NSInteger kBaseMidiNote = 60;
     NSMutableArray *_lastNotes;
     NSDate *_startTime;
     NSInteger _counter;
-    SoundGen *_soundGen;
+    SoundGen *_bassSoundGen;
+    SoundGen *_pianoSoundGen;
+    SoundGen *_guitarSoundGen;
+    SoundGen *_drumSoundGen;
+    NSMutableArray *_soundGens;
 }
 
 @end
@@ -47,9 +53,25 @@ static BeatBrain *sharedBrain = nil;
     self.bpm = 180;
     _counter = 0;
     
+    _soundGens = [[NSMutableArray alloc] init];
+    
     // Setup SoundGen stuff
-    NSURL *presetURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"guitar" ofType:@"sf2"]];
-    _soundGen = [[SoundGen alloc] initWithSoundFontURL:presetURL patchNumber:1];
+    NSURL *guitarURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"guitar" ofType:@"sf2"]];
+    _guitarSoundGen = [[SoundGen alloc] initWithSoundFontURL:guitarURL patchNumber:1];
+    
+    NSURL *bassURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"bass" ofType:@"sf2"]];
+    _guitarSoundGen = [[SoundGen alloc] initWithSoundFontURL:bassURL patchNumber:1];
+    
+//    NSURL *drumURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"drum" ofType:@"sf2"]];
+//    _guitarSoundGen = [[SoundGen alloc] initWithSoundFontURL:drumURL patchNumber:1];
+    
+    NSURL *pianoURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"piano" ofType:@"sf2"]];
+    _guitarSoundGen = [[SoundGen alloc] initWithSoundFontURL:pianoURL patchNumber:1];
+    
+    [_soundGens addObject:_guitarSoundGen];
+    [_soundGens addObject:_bassSoundGen];
+//    [_soundGens addObject:_drumSoundGen];
+    [_soundGens addObject:_pianoSoundGen];
 }
 
 - (void)begin {
@@ -68,7 +90,9 @@ static BeatBrain *sharedBrain = nil;
         [self.bbDelegate didChangeBeat:beat];
     }
     
-    [_soundGen stopPlayingAllNotes];
+    for (SoundGen *soundGen in _soundGens) {
+        [soundGen stopPlayingAllNotes];
+    }
     
     for (Loop *loop in _loops) {
         [self _playColumn:beat forLoop:loop];
@@ -80,9 +104,23 @@ static BeatBrain *sharedBrain = nil;
 - (void)_playColumn:(NSInteger)column forLoop:(Loop *)loop {
     for (int j = 0; j < kOctave; j++) {
         if ([loop.grid[column][j] boolValue]) {
-            [_soundGen playMidiNote:(kBaseMidiNote - j) velocity:90];
+            [self _playNote:(kBaseMidiNote - j) withInstrumentType:loop.instrument.type];
         }
     }
+}
+
+- (void)_playNote:(NSInteger)midiNote withInstrumentType:(InstrumentType)instrumentType {
+    
+    if (instrumentType == kInstrumentTypePiano) {
+        [_pianoSoundGen playMidiNote:midiNote velocity:kMidiNoteVelocity];
+    } else if (instrumentType == kInstrumentTypeGuitar) {
+        [_guitarSoundGen playMidiNote:midiNote velocity:kMidiNoteVelocity];
+    } else if (instrumentType == kInstrumentTypeBass) {
+        [_bassSoundGen playMidiNote:midiNote velocity:kMidiNoteVelocity];
+    } else if (instrumentType == kInstrumentTypeDrums) {
+        [_drumSoundGen playMidiNote:midiNote velocity:kMidiNoteVelocity];
+    }
+    
 }
 
 - (void)addLoop:(Loop *)newLoop {

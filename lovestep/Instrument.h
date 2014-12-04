@@ -8,9 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    kInstrumentTypePiano,
+    kInstrumentTypeGuitar,
+    kInstrumentTypeBass,
+    kInstrumentTypeDrums
+} InstrumentType;
+
 @interface Instrument : NSObject
 
 - (id)initWithName:(NSString *)name soundFont:(NSString *)soundFont;
+- (instancetype)initWithType:(InstrumentType)instrumentType;
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *soundFont;

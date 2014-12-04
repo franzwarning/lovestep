@@ -8,8 +8,10 @@
 
 #import "LoopViewController.h"
 #import "RotationAwareNavigationController.h"
+#import "ComposeViewController.h"
+#import "Instrument.h"
 
-@interface LoopViewController ()
+@interface LoopViewController () <UIActionSheetDelegate>
 
 @end
 
@@ -28,8 +30,30 @@
 }
 
 - (void)_addLoop:(id)sender {
-    [(RotationAwareNavigationController *)self.navigationController orientLeft];
-    [self performSegueWithIdentifier:@"composeViewController" sender:self];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Pick an Instrument" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Piano", @"Bass", @"Guitar", nil];
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    Instrument *instrument = nil;
+    
+    if (buttonIndex == 0) {
+        
+        instrument = [[Instrument alloc] initWithName:@"Piano" soundFont:@"piano"];
+        
+        // Piano was hit
+        [(RotationAwareNavigationController *)self.navigationController orientLeft];
+        ComposeViewController *cvc = [[ComposeViewController alloc] initWithInstrument:instrument];
+        [self.navigationController pushViewController:cvc animated:YES];
+        
+    } else if (buttonIndex == 1) {
+        // Bass was hit
+    } else if (buttonIndex == 2) {
+        // Guitar was hit
+    } else if (buttonIndex == 3) {
+        // Cancel was hit
+
+    }
 }
 
 @end

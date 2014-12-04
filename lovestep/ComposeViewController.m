@@ -17,9 +17,9 @@
 
 static const NSInteger kControlXPadding = 10;
 static const NSInteger kControlStartY = 44;
+static const NSInteger kControlYPadding = 10;
 
 @interface ComposeViewController () <StepSequencerDelegate, BeatBrainDelegate> {
-    SoundGen *_soundGen;
     StepSequencerView *_ssv;
     Loop *_activeLoop;
 }
@@ -28,44 +28,46 @@ static const NSInteger kControlStartY = 44;
 
 @implementation ComposeViewController
 
-#pragma mark ViewController Life Cycle
+#pragma mark Init Methods
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (instancetype)initWithInstrument:(Instrument *)instrument {
+    self = [super init];
+    if (self) {
+        
+        [self.view setBackgroundColor:[UIColor whiteColor]];
+        
+        // Setup navigation stuff
+        [self.navigationItem setHidesBackButton:YES];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(_cancelComposition:)];
+        self.title = @"Compose A Loop";
+        
+        // Setup the step sequencer view
+        [self _setupStepSequencerView];
+        
+        // Setup the step sequencer controls
+        [self _setupControls];
+        
+        // Setupt the active loop
+        _activeLoop = [[Loop alloc] initWithLength:16
+                                              name:@"Test Loop"
+                                        instrument:instrument
+                                              user:1];
+        
+    }
     
-    NSLog(@"Frame: (%f, %f, %f, %f)", self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
-    
-    // Setup navigation stuff
-    [self.navigationItem setHidesBackButton:YES];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(_cancelComposition:)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_addLoop:)];
-    self.title = @"Compose A Loop";
-    
-    // Setup the step sequencer view
-    [self _setupStepSequencerView];
-    
-    // Setup the step sequencer controls
-    [self _setupControls];
-    
-    // Setup the beat brain
-    _activeLoop = [[Loop alloc] initWithLength:16
-                                          name:@"Test Loop"
-                                    instrument:[[Instrument alloc] initWithName:@"Piano" soundFont:@"Piano" ]
-                                          user:1];
-    [[BeatBrain sharedBrain] setBbDelegate:self];
-    [[BeatBrain sharedBrain] setActiveLoop:_activeLoop];
+    return self;
 }
+
+#pragma mark ViewController Life Cycle
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [(RotationAwareNavigationController *)self.navigationController orientLeft];
+    [super viewDidAppear:animated];
     
-    // Create test loop
-    Loop *newLoop = [[Loop alloc] init];
-    newLoop.name = @"test loop";
-    newLoop.instrument = [[Instrument alloc] initWithName:@"piano" soundFont:@"Piano"];
-    
-    [[BeatBrain sharedBrain] addLoop:newLoop];
+    // Setup the beat brain
+    [[BeatBrain sharedBrain] setBbDelegate:self];
+    [[BeatBrain sharedBrain] setActiveLoop:_activeLoop];
+
 }
 
 #pragma mark StepSequencerDelegate Methods
@@ -103,27 +105,29 @@ static const NSInteger kControlStartY = 44;
     UIButton *addLoopButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [addLoopButton setTitle:@"Add Loop" forState:UIControlStateNormal];
     [addLoopButton.titleLabel setFont:[UIFont systemFontOfSize:13.f]];
-    [addLoopButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-    [addLoopButton setFrame:CGRectMake(kControlXPadding, yOrigin, 80, 50)];
-    [addLoopButton.layer setBorderColor:[UIColor greenColor].CGColor];
+    [addLoopButton setFrame:CGRectMake(kControlXPadding, yOrigin, 80, 40)];
+    [addLoopButton.layer setBorderColor:[UIColor colorWithHue:0.47 saturation:0.86 brightness:0.74 alpha:1].CGColor];
     [addLoopButton.layer setBorderWidth:3.0f];
     [addLoopButton.layer setCornerRadius:6.f];
-    [addLoopButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [addLoopButton setTitleColor:[UIColor colorWithHue:0.47 saturation:0.86 brightness:0.74 alpha:1] forState:UIControlStateNormal];
+    [addLoopButton setTitleColor:[UIColor colorWithHue:0.47 saturation:0.86 brightness:0.74 alpha:.3] forState:UIControlStateHighlighted];
+    
     [addLoopButton addTarget:self action:@selector(_addLoop:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addLoopButton];
     
-    yOrigin += addLoopButton.frame.size.height + 20;
+    yOrigin += addLoopButton.frame.size.height + kControlYPadding;
     
     // Clear grid button
     UIButton *clearGridButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [clearGridButton setTitle:@"Clear" forState:UIControlStateNormal];
     [clearGridButton.titleLabel setFont:[UIFont systemFontOfSize:13.f]];
-    [clearGridButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-    [clearGridButton setFrame:CGRectMake(kControlXPadding, yOrigin, 80, 50)];
-    [clearGridButton.layer setBorderColor:[UIColor greenColor].CGColor];
+    [clearGridButton setFrame:CGRectMake(kControlXPadding, yOrigin, 80, 40)];
+    [clearGridButton.layer setBorderColor:[UIColor colorWithHue:0.57 saturation:0.76 brightness:0.86 alpha:1].CGColor];
     [clearGridButton.layer setBorderWidth:3.0f];
     [clearGridButton.layer setCornerRadius:6.f];
-    [clearGridButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [clearGridButton setTitleColor:[UIColor colorWithHue:0.57 saturation:0.76 brightness:0.86 alpha:1] forState:UIControlStateNormal];
+    [clearGridButton setTitleColor:[UIColor colorWithHue:0.57 saturation:0.76 brightness:0.86 alpha:.3] forState:UIControlStateHighlighted];
+    
     [clearGridButton addTarget:self action:@selector(_clearLoop:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:clearGridButton];
 }
@@ -154,7 +158,7 @@ static const NSInteger kControlStartY = 44;
 {
     // Get rid of the current loop
     [[BeatBrain sharedBrain] setActiveLoop:nil];
-
+    
     [(RotationAwareNavigationController *)self.navigationController orientPortrait];
     [self.navigationController popViewControllerAnimated:YES];
 }
