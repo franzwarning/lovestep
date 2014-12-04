@@ -10,7 +10,13 @@
 #import "SoundGen.h"
 #import "Loop.h"
 
+
 static const NSInteger kBaseMidiNote = 60;
+static const int kMinorPentatonicIntervals[] = { 0,  3,  5,  7, 10,
+                                                12, 15, 17, 19, 22,
+                                                24, 27, 29, 31, 34};
+
+
 
 @interface BeatBrain ()  {
     NSTimer *_timer;
@@ -80,7 +86,8 @@ static BeatBrain *sharedBrain = nil;
 - (void)_playColumn:(NSInteger)column forLoop:(Loop *)loop {
     for (int j = 0; j < kOctave; j++) {
         if ([loop.grid[column][j] boolValue]) {
-            [_soundGen playMidiNote:(kBaseMidiNote - j) velocity:90];
+           int midi = kBaseMidiNote + kMinorPentatonicIntervals[j];
+           [_soundGen playMidiNote:(midi) velocity:90];
         }
     }
 }
