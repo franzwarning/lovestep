@@ -8,8 +8,10 @@
 
 #import "LoopViewController.h"
 #import "RotationAwareNavigationController.h"
+#import "ComposeViewController.h"
+#import "Instrument.h"
 
-@interface LoopViewController ()
+@interface LoopViewController () <UIActionSheetDelegate>
 
 @end
 
@@ -28,8 +30,54 @@
 }
 
 - (void)_addLoop:(id)sender {
-    [(RotationAwareNavigationController *)self.navigationController orientLeft];
-    [self performSegueWithIdentifier:@"composeViewController" sender:self];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Pick an Instrument" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Piano", @"Bass", @"Guitar", @"Drums", nil];
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    Instrument *instrument = nil;
+    
+    if (buttonIndex == 0) {
+        
+        instrument = [[Instrument alloc] initWithType:kInstrumentTypePiano];
+        
+        // Piano was hit
+        [(RotationAwareNavigationController *)self.navigationController orientLeft];
+        ComposeViewController *cvc = [[ComposeViewController alloc] initWithInstrument:instrument];
+        [self.navigationController pushViewController:cvc animated:YES];
+        
+    } else if (buttonIndex == 1) {
+        // Bass was hit
+        instrument = [[Instrument alloc] initWithType:kInstrumentTypeBass];
+        
+        // Piano was hit
+        [(RotationAwareNavigationController *)self.navigationController orientLeft];
+        ComposeViewController *cvc = [[ComposeViewController alloc] initWithInstrument:instrument];
+        [self.navigationController pushViewController:cvc animated:YES];
+        
+    } else if (buttonIndex == 2) {
+        // Guitar was hit
+        instrument = [[Instrument alloc] initWithType:kInstrumentTypeGuitar];
+        
+        // Piano was hit
+        [(RotationAwareNavigationController *)self.navigationController orientLeft];
+        ComposeViewController *cvc = [[ComposeViewController alloc] initWithInstrument:instrument];
+        [self.navigationController pushViewController:cvc animated:YES];
+        
+    } else if (buttonIndex == 3) {
+        
+        // Drums were was hit
+        instrument = [[Instrument alloc] initWithType:kInstrumentTypeDrums];
+        
+        // Piano was hit
+        [(RotationAwareNavigationController *)self.navigationController orientLeft];
+        ComposeViewController *cvc = [[ComposeViewController alloc] initWithInstrument:instrument];
+        [self.navigationController pushViewController:cvc animated:YES];
+        
+    } else if (buttonIndex == 4) {
+        // Cancel was hit
+
+    }
 }
 
 @end

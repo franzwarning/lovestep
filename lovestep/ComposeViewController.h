@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Instrument;
+
 @interface ComposeViewController : UIViewController
+
+- (instancetype)initWithInstrument:(Instrument *)instrument;
 
 @end
