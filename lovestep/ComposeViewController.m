@@ -28,6 +28,8 @@ static const NSInteger kControlStartY = 44;
 
 @implementation ComposeViewController
 
+#pragma mark ViewController Life Cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -66,6 +68,8 @@ static const NSInteger kControlStartY = 44;
     [[BeatBrain sharedBrain] addLoop:newLoop];
 }
 
+#pragma mark StepSequencerDelegate Methods
+
 - (void)cellChanged:(CellView *)cell
 {
     NSInteger row = cell.row;
@@ -75,19 +79,6 @@ static const NSInteger kControlStartY = 44;
     _activeLoop.grid[col][row] = [NSNumber numberWithBool:isOn];
 }
 
-- (void)_setupControls {
-    UIButton *addLoopButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [addLoopButton setTitle:@"Add Loop" forState:UIControlStateNormal];
-    [addLoopButton.titleLabel setFont:[UIFont systemFontOfSize:13.f]];
-    [addLoopButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-    [addLoopButton setFrame:CGRectMake(kControlXPadding, kControlStartY, 80, 50)];
-    [addLoopButton.layer setBorderColor:[UIColor greenColor].CGColor];
-    [addLoopButton.layer setBorderWidth:3.0f];
-    [addLoopButton.layer setCornerRadius:6.f];
-    [addLoopButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-    [self.view addSubview:addLoopButton];
-}
-
 - (void)_setupStepSequencerView {
     _ssv = [[StepSequencerView alloc] initWithFrame:CGRectMake(100, 0, 567, 375)];
     [_ssv setBackgroundColor:[UIColor lightGrayColor]];
@@ -95,23 +86,75 @@ static const NSInteger kControlStartY = 44;
     [self.view addSubview:_ssv];
 }
 
+#pragma mark BeatBrainDelegate Methods
+
 - (void)didChangeBeat:(NSInteger)beat
 {
     [_ssv beatDidChange:beat];
 }
 
+#pragma mark Prive Methods
+
+- (void)_setupControls {
+    
+    CGFloat yOrigin = kControlStartY;
+    
+    // Add loop button
+    UIButton *addLoopButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [addLoopButton setTitle:@"Add Loop" forState:UIControlStateNormal];
+    [addLoopButton.titleLabel setFont:[UIFont systemFontOfSize:13.f]];
+    [addLoopButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [addLoopButton setFrame:CGRectMake(kControlXPadding, yOrigin, 80, 50)];
+    [addLoopButton.layer setBorderColor:[UIColor greenColor].CGColor];
+    [addLoopButton.layer setBorderWidth:3.0f];
+    [addLoopButton.layer setCornerRadius:6.f];
+    [addLoopButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [addLoopButton addTarget:self action:@selector(_addLoop:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:addLoopButton];
+    
+    yOrigin += addLoopButton.frame.size.height + 20;
+    
+    // Clear grid button
+    UIButton *clearGridButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [clearGridButton setTitle:@"Clear" forState:UIControlStateNormal];
+    [clearGridButton.titleLabel setFont:[UIFont systemFontOfSize:13.f]];
+    [clearGridButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [clearGridButton setFrame:CGRectMake(kControlXPadding, yOrigin, 80, 50)];
+    [clearGridButton.layer setBorderColor:[UIColor greenColor].CGColor];
+    [clearGridButton.layer setBorderWidth:3.0f];
+    [clearGridButton.layer setCornerRadius:6.f];
+    [clearGridButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [clearGridButton addTarget:self action:@selector(_clearLoop:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:clearGridButton];
+}
+
+- (void)_clearLoop:(id)sender
+{
+    [_ssv clearGrid];
+    
+    for (int i = 0; i < kNumCols; i++) {
+        for (int j = 0; j < kNumRows; j++) {
+            _activeLoop.grid[i][j] = [NSNumber numberWithBool:NO];
+        }
+    }
+}
+
 - (void)_addLoop:(id)sender
 {
     // Add loop logic here
+    [[BeatBrain sharedBrain] addLoop:_activeLoop];
+    [[BeatBrain sharedBrain] setActiveLoop:nil];
     [self.navigationController popViewControllerAnimated:YES];
-
+    
+    [(RotationAwareNavigationController *)self.navigationController orientPortrait];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)_cancelComposition:(id)sender
 {
     // Get rid of the current loop
-    [[BeatBrain sharedBrain] removeLoop:_activeLoop];
-    
+    [[BeatBrain sharedBrain] setActiveLoop:nil];
+
     [(RotationAwareNavigationController *)self.navigationController orientPortrait];
     [self.navigationController popViewControllerAnimated:YES];
 }

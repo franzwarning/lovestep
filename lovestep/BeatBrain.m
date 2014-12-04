@@ -48,7 +48,7 @@ static BeatBrain *sharedBrain = nil;
     _counter = 0;
     
     // Setup SoundGen stuff
-    NSURL *presetURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"guitar1" ofType:@"sf2"]];
+    NSURL *presetURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"guitar" ofType:@"sf2"]];
     _soundGen = [[SoundGen alloc] initWithSoundFontURL:presetURL patchNumber:1];
 }
 

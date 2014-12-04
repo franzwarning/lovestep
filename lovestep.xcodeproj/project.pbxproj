@@ -27,8 +27,7 @@
 		AFC4CA5C1A1E71BC000F2FE6 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC4CA5B1A1E71BC000F2FE6 /* ComposeViewController.m */; };
 		AFC4CA611A1E7312000F2FE6 /* SoundGen.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC4CA601A1E7312000F2FE6 /* SoundGen.m */; };
 		AFE764461A2FEBCF00784D35 /* bass.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = AFE764451A2FEBCF00784D35 /* bass.sf2 */; };
-		AFE764551A2FEE4800784D35 /* guitar1.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = AFE764531A2FEE4800784D35 /* guitar1.sf2 */; };
-		AFE764561A2FEE4800784D35 /* guitar.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = AFE764541A2FEE4800784D35 /* guitar.sf2 */; };
+		AFE764551A2FEE4800784D35 /* guitar.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = AFE764531A2FEE4800784D35 /* guitar.sf2 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,8 +77,7 @@
 		AFC4CA5F1A1E7312000F2FE6 /* SoundGen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundGen.h; sourceTree = "<group>"; };
 		AFC4CA601A1E7312000F2FE6 /* SoundGen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundGen.m; sourceTree = "<group>"; };
 		AFE764451A2FEBCF00784D35 /* bass.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bass.sf2; sourceTree = "<group>"; };
-		AFE764531A2FEE4800784D35 /* guitar1.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = guitar1.sf2; sourceTree = "<group>"; };
-		AFE764541A2FEE4800784D35 /* guitar.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = guitar.sf2; sourceTree = "<group>"; };
+		AFE764531A2FEE4800784D35 /* guitar.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = guitar.sf2; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,8 +195,7 @@
 		AFC4CA551A1E7193000F2FE6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AFE764531A2FEE4800784D35 /* guitar1.sf2 */,
-				AFE764541A2FEE4800784D35 /* guitar.sf2 */,
+				AFE764531A2FEE4800784D35 /* guitar.sf2 */,
 				AFE764451A2FEBCF00784D35 /* bass.sf2 */,
 				AF4C06671A1EAB6F0018FF26 /* piano.sf2 */,
 				AFA3D74E1A1DBFC300580F5C /* Images.xcassets */,
@@ -313,9 +310,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFE764561A2FEE4800784D35 /* guitar.sf2 in Resources */,
 				AF4C06691A1EAB9E0018FF26 /* LaunchScreen.xib in Resources */,
-				AFE764551A2FEE4800784D35 /* guitar1.sf2 in Resources */,
+				AFE764551A2FEE4800784D35 /* guitar.sf2 in Resources */,
 				AF4C066A1A1EAB9E0018FF26 /* Main.storyboard in Resources */,
 				AF4C06681A1EAB6F0018FF26 /* piano.sf2 in Resources */,
 				AFA3D74F1A1DBFC300580F5C /* Images.xcassets in Resources */,

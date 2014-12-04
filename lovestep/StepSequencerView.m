@@ -9,8 +9,6 @@
 #import "StepSequencerView.h"
 #import "CellView.h"
 
-static const CGFloat kNumRows = 12;
-static const CGFloat kNumCols = 16;
 static const CGFloat kCellMargin = 5;
 
 @interface StepSequencerView () <CellViewDelegate> {
@@ -29,6 +27,16 @@ static const CGFloat kCellMargin = 5;
         [self _setupGrid];
     }
     return self;
+}
+
+#pragma Mark Public Methods
+
+- (void)clearGrid {
+    for (int i = 0; i < kNumCols; i++) {
+        for (int j = 0; j < kNumRows; j++) {
+            [(CellView *)_cells[i][j] turnOff];
+        }
+    }
 }
 
 #pragma mark View Setup
