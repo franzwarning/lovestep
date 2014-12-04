@@ -27,16 +27,31 @@
         
         // Clear the grid
         self.grid = [[NSMutableArray alloc] init];
-        [self _emptyGrid];
+        //[self _emptyGrid];
+        [self procedurallyGenerateGrid];
+
     }
     
     return self;
 }
 
+- (void) procedurallyGenerateGrid {
+   [self _emptyGrid];
+   int denominator = 10;
+   for (int i = 0; i < self.length; i++) {
+      int numerator = 4;
+      if (i % 4 == 0) numerator += 4;
+      if (arc4random_uniform(denominator) < numerator) {
+         int row = arc4random_uniform(kHeight);
+         self.grid[i][row] = [NSNumber numberWithBool:YES];
+      }
+   }
+}
+
 - (void)_emptyGrid {
     for (int i = 0; i < self.length; i++) {
         NSMutableArray *column = [[NSMutableArray alloc] init];
-        for (int j = 0; j < kOctave; j++) {
+        for (int j = 0; j < kHeight; j++) {
             column[j] = [NSNumber numberWithBool:NO];
         }
         

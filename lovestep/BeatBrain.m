@@ -105,11 +105,11 @@ static BeatBrain *sharedBrain = nil;
 }
 
 - (void)_playColumn:(NSInteger)column forLoop:(Loop *)loop {
-    for (int j = 0; j < kOctave; j++) {
+    for (int j = 0; j < kHeight; j++) {
         if ([loop.grid[column][j] boolValue]) {
 
            //Select midi
-           int step = kOctave - j - 1;
+           int step = kHeight - 1 - j;
            int midi = kBaseMidiNote;
            if (loop.instrument.type == kInstrumentTypeDrums) {
               //drum stuff

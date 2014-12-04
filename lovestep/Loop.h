@@ -10,7 +10,7 @@
 
 @class Instrument;
 
-static const NSInteger kOctave = 12;
+static const NSInteger kHeight = 12;
 
 @interface Loop : NSObject
 
@@ -21,5 +21,6 @@ static const NSInteger kOctave = 12;
 @property (nonatomic) Instrument *instrument;
 
 - (id)initWithLength:(NSInteger)length name:(NSString *)name instrument:(Instrument *)instrument user:(NSInteger)user;
+- (void)procedurallyGenerateGrid;
 
 @end
