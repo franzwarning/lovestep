@@ -18,7 +18,6 @@ static const int kDiatonicIntervals[] = { 0,  2,  4,  5,  7,  9, 11, 12, 14, 16,
 
 @interface BeatBrain ()  {
     NSTimer *_timer;
-    NSMutableArray *_loops;
     NSMutableArray *_lastNotes;
     NSDate *_startTime;
     NSInteger _counter;
@@ -51,7 +50,7 @@ static BeatBrain *sharedBrain = nil;
 }
 
 - (void)_setupBrain {
-    _loops = [[NSMutableArray alloc] init];
+    self.loops = [[NSMutableArray alloc] init];
     self.bpm = 180;
     self.scale = kScaleTypePentatonic;
     _counter = 0;
@@ -94,10 +93,12 @@ static BeatBrain *sharedBrain = nil;
     }
     
     for (SoundGen *soundGen in _soundGens) {
-        [soundGen stopPlayingAllNotes];
+        if (![soundGen isEqual:_drumSoundGen]) {
+            [soundGen stopPlayingAllNotes];
+        }
     }
     
-    for (Loop *loop in _loops) {
+    for (Loop *loop in self.loops) {
         [self _playColumn:beat forLoop:loop];
     }
     
@@ -153,11 +154,11 @@ static BeatBrain *sharedBrain = nil;
 }
 
 - (void)addLoop:(Loop *)newLoop {
-    [_loops addObject:newLoop];
+    [self.loops addObject:newLoop];
 }
 
 - (void)removeLoop:(Loop *)loop {
-    [_loops removeObject:loop];
+    [self.loops removeObject:loop];
 }
 
 

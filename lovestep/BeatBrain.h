@@ -25,6 +25,8 @@ typedef enum {
 
 @property (nonatomic) NSInteger bpm;
 @property (nonatomic, strong) Loop *activeLoop;
+@property (nonatomic, strong) NSMutableArray *loops;
+
 @property (nonatomic, strong) id <BeatBrainDelegate>bbDelegate;
 @property (nonatomic) ScaleType scale;
 

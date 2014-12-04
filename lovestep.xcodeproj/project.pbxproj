@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF1F7EA11A3113F700D3DBAC /* LoopVisualizerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1F7EA01A3113F700D3DBAC /* LoopVisualizerView.m */; };
 		AF2023271A1EC82000EDDEDA /* Loop.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2023261A1EC82000EDDEDA /* Loop.m */; };
 		AF20232A1A1ECA0100EDDEDA /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2023291A1ECA0100EDDEDA /* Instrument.m */; };
 		AF20232D1A1ECAEA00EDDEDA /* BeatBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = AF20232C1A1ECAEA00EDDEDA /* BeatBrain.m */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AF1F7E9F1A3113F700D3DBAC /* LoopVisualizerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopVisualizerView.h; sourceTree = "<group>"; };
+		AF1F7EA01A3113F700D3DBAC /* LoopVisualizerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopVisualizerView.m; sourceTree = "<group>"; };
 		AF2023251A1EC82000EDDEDA /* Loop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loop.h; sourceTree = "<group>"; };
 		AF2023261A1EC82000EDDEDA /* Loop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Loop.m; sourceTree = "<group>"; };
 		AF2023281A1ECA0100EDDEDA /* Instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrument.h; sourceTree = "<group>"; };
@@ -108,6 +111,8 @@
 				AF20232F1A1EDB6E00EDDEDA /* StepSequencerView.m */,
 				AF2023311A1EDB7A00EDDEDA /* CellView.h */,
 				AF2023321A1EDB7A00EDDEDA /* CellView.m */,
+				AF1F7E9F1A3113F700D3DBAC /* LoopVisualizerView.h */,
+				AF1F7EA01A3113F700D3DBAC /* LoopVisualizerView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -350,6 +355,7 @@
 				AF2023301A1EDB6E00EDDEDA /* StepSequencerView.m in Sources */,
 				AF20232D1A1ECAEA00EDDEDA /* BeatBrain.m in Sources */,
 				AFC4CA591A1E71B4000F2FE6 /* LoopViewController.m in Sources */,
+				AF1F7EA11A3113F700D3DBAC /* LoopVisualizerView.m in Sources */,
 				AF4C06631A1E9DC10018FF26 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
