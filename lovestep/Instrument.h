@@ -10,9 +10,17 @@
 
 @interface Instrument : NSObject
 
-- (id)initWithName:(NSString *)name soundFont:(NSString *)soundFont;
+typedef enum {
+   kInstrumentTypePiano,
+   kInstrumentTypeDrums,
+   kInstrumentTypeGuitar,
+   kInstrumentTypeBass
+} InstrumentType;
 
-@property (nonatomic, strong) NSString *name;
+- (id)initWithName:(InstrumentType)type soundFont:(NSString *)soundFont;
+- (NSString *) getTypeName;
+
+@property (nonatomic) InstrumentType type;
 @property (nonatomic, strong) NSString *soundFont;
 
 @end
