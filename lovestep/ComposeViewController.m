@@ -81,10 +81,10 @@ static const NSInteger kControlStartY = 44;
     [addLoopButton.titleLabel setFont:[UIFont systemFontOfSize:13.f]];
     [addLoopButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
     [addLoopButton setFrame:CGRectMake(kControlXPadding, kControlStartY, 80, 50)];
-    [addLoopButton.layer setBorderColor:[UIColor color].CGColor];
+    [addLoopButton.layer setBorderColor:[UIColor greenColor].CGColor];
     [addLoopButton.layer setBorderWidth:3.0f];
     [addLoopButton.layer setCornerRadius:6.f];
-    [addLoopButton setTitleColor:[UIColor gree] forState:<#(UIControlState)#>]
+    [addLoopButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
     [self.view addSubview:addLoopButton];
 }
 
@@ -103,11 +103,15 @@ static const NSInteger kControlStartY = 44;
 - (void)_addLoop:(id)sender
 {
     // Add loop logic here
+    [self.navigationController popViewControllerAnimated:YES];
 
 }
 
 - (void)_cancelComposition:(id)sender
 {
+    // Get rid of the current loop
+    [[BeatBrain sharedBrain] removeLoop:_activeLoop];
+    
     [(RotationAwareNavigationController *)self.navigationController orientPortrait];
     [self.navigationController popViewControllerAnimated:YES];
 }

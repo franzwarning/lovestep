@@ -25,6 +25,7 @@
 + (id)sharedBrain;
 
 - (void)addLoop:(Loop *)newLoop;
+- (void)removeLoop:(Loop *)loop;
 - (void)begin;
 
 @end
