@@ -17,6 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_exitSettings:)];
+
+}
+
+- (void)_exitSettings:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

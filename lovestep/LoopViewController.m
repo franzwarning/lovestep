@@ -112,8 +112,7 @@
 #pragma mark Private Methods
 
 - (void)_settingsHit:(id)sender {
-    SettingsViewController *svc = [[SettingsViewController alloc] init];
-    [self presentViewController:svc animated:YES completion:nil];
+    [self performSegueWithIdentifier:@"SettingsViewController" sender:self];
 }
 
 - (void)_addLoop:(id)sender {
