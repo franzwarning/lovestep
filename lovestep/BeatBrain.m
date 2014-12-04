@@ -73,7 +73,7 @@ static BeatBrain *sharedBrain = nil;
     
     [_soundGens addObject:_guitarSoundGen];
     [_soundGens addObject:_bassSoundGen];
-//    [_soundGens addObject:_drumSoundGen];
+    [_soundGens addObject:_drumSoundGen];
     [_soundGens addObject:_pianoSoundGen];
 }
 
