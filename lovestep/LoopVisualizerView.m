@@ -31,7 +31,7 @@ static const NSInteger kNumBeats = 16;
         // Set background color
         [self setBackgroundColor:[UIColor whiteColor]];
         
-        _currentOuterRadius = 50;
+        _currentOuterRadius = 30;
         
         // Add self to bbDelegate
         [[BeatBrain sharedBrain] setBbDelegate:self];
@@ -45,18 +45,50 @@ static const NSInteger kNumBeats = 16;
     return self;
 }
 
+#pragma mark Public Methods
+
+- (void)refreshLoops {
+    
+    // Go through each loop
+    for (Loop *loop in [[BeatBrain sharedBrain] loops]) {
+        
+        BOOL hasRing = NO;
+        
+        // Check to see if we have a ring for that loop
+        for (RingView *ringView in _ringViews) {
+            if ([ringView.loop isEqual:loop]) {
+                hasRing = YES;
+            }
+        }
+        
+        if (!hasRing) {
+            [self _addRingViewForLoop:loop];
+        }
+    }
+}
+
 #pragma mark Private Methods
 
 - (void)_addRingViewForLoop:(Loop *)loop {
+    
+    // Check to make sure the loops doesn't already exist
     
     CGFloat outerRadius = _currentOuterRadius + 20;
     CGFloat innerRadius = outerRadius - 20;
     RingView *newRing = [self createRingWithOuterRadius:outerRadius innerRadius:innerRadius loop:loop];
     [newRing setCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
-    [self addSubview:newRing];
+    [self insertSubview:newRing belowSubview:_cursor];
     
+    // Increase the cursor height
+    if ([[[BeatBrain sharedBrain] loops] count] > 1) {
+        [_cursor.layer setAnchorPoint:CGPointMake(0.5, 1.0)];
+        _cursor.frame = CGRectMake(_cursor.frame.origin.x, _cursor.frame.origin.y, _cursor.frame.size.width, _cursor.frame.size.height + 20);
+        [_cursor setCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
+    }
+
+
     [_ringViews addObject:newRing];
-    _currentOuterRadius += 40;
+    _currentOuterRadius += 20;
 }
 
 - (void)_setupCursor {
@@ -81,6 +113,10 @@ static const NSInteger kNumBeats = 16;
 - (void)didChangeBeat:(NSInteger)beat {
         
     if (beat == 0) {
+        
+        if ([_cursor.layer animationForKey:@"rotationAnimation"]) {
+            [_cursor.layer removeAnimationForKey:@"rotationAnimation"];
+        }
 
         CGFloat duration  = 60 / ([[BeatBrain sharedBrain] bpm] / (CGFloat)kNumBeats);
         
@@ -88,7 +124,7 @@ static const NSInteger kNumBeats = 16;
         rotationAnimation.toValue = @(M_PI * 2);
         rotationAnimation.duration = duration;
         rotationAnimation.autoreverses = NO;
-        rotationAnimation.repeatCount = 0;
+        rotationAnimation.repeatCount = HUGE_VALF;
         rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
         [_cursor.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
 

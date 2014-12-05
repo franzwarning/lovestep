@@ -11,4 +11,6 @@
 
 @interface LoopVisualizerView : UIView <BeatBrainDelegate>
 
+- (void)refreshLoops;
+
 @end

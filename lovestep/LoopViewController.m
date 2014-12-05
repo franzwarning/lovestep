@@ -69,6 +69,7 @@
     
     // Make sure the bbdelegate is set
     [[BeatBrain sharedBrain] setBbDelegate:_lvv];
+    [_lvv refreshLoops];
 
     
     [_tableView reloadData];
