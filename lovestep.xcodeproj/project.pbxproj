@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF03A32A1A319C1100C732B4 /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF03A3291A319C1100C732B4 /* InviteViewController.m */; };
 		AF1F7EA11A3113F700D3DBAC /* LoopVisualizerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1F7EA01A3113F700D3DBAC /* LoopVisualizerView.m */; };
 		AF1F7EA41A31271B00D3DBAC /* RingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1F7EA31A31271B00D3DBAC /* RingView.m */; };
 		AF2023271A1EC82000EDDEDA /* Loop.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2023261A1EC82000EDDEDA /* Loop.m */; };
@@ -41,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AF03A3281A319C1100C732B4 /* InviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteViewController.h; sourceTree = "<group>"; };
+		AF03A3291A319C1100C732B4 /* InviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteViewController.m; sourceTree = "<group>"; };
 		AF1F7E9F1A3113F700D3DBAC /* LoopVisualizerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopVisualizerView.h; sourceTree = "<group>"; };
 		AF1F7EA01A3113F700D3DBAC /* LoopVisualizerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopVisualizerView.m; sourceTree = "<group>"; };
 		AF1F7EA21A31271B00D3DBAC /* RingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingView.h; sourceTree = "<group>"; };
@@ -219,6 +222,8 @@
 				AFC4CA5B1A1E71BC000F2FE6 /* ComposeViewController.m */,
 				AF4C06611A1E9DC10018FF26 /* SettingsViewController.h */,
 				AF4C06621A1E9DC10018FF26 /* SettingsViewController.m */,
+				AF03A3281A319C1100C732B4 /* InviteViewController.h */,
+				AF03A3291A319C1100C732B4 /* InviteViewController.m */,
 				AF4C06641A1E9F980018FF26 /* RotationAwareNavigationController.h */,
 				AF4C06651A1E9F980018FF26 /* RotationAwareNavigationController.m */,
 			);
@@ -351,6 +356,7 @@
 				AF1F7EA41A31271B00D3DBAC /* RingView.m in Sources */,
 				AF1F7EA11A3113F700D3DBAC /* LoopVisualizerView.m in Sources */,
 				AF4C06631A1E9DC10018FF26 /* SettingsViewController.m in Sources */,
+				AF03A32A1A319C1100C732B4 /* InviteViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -104,7 +104,7 @@ enum {
     if (audioSessionError != nil) {NSLog (@"Error setting audio session category."); return NO;}
     
     // Request a desired hardware sample rate.
-    self.graphSampleRate = 41000.;    // Hertz
+    self.graphSampleRate = 44100;    // Hertz
     
     [mySession setPreferredSampleRate: self.graphSampleRate error: &audioSessionError];
     if (audioSessionError != nil) {NSLog (@"Error setting preferred hardware sample rate."); return NO;}

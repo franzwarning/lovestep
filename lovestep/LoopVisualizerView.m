@@ -13,6 +13,7 @@
 #define DEGREES_RADIANS(angle) ((angle) / 180.0 * M_PI)
 
 static const NSInteger kNumBeats = 16;
+static const NSInteger kInitialCursorHeight = 50;
 
 @interface LoopVisualizerView () {
     NSMutableArray *_ringViews;
@@ -35,9 +36,6 @@ static const NSInteger kNumBeats = 16;
         [self setBackgroundColor:[UIColor whiteColor]];
         
         _currentOuterRadius = 30;
-        
-        // Add self to bbDelegate
-        [[BeatBrain sharedBrain] setBbDelegate:self];
         
         // Init the loopviews array
         _ringViews = [[NSMutableArray alloc] init];
@@ -88,7 +86,7 @@ static const NSInteger kNumBeats = 16;
     if ([[[BeatBrain sharedBrain] loops] count] > 1) {
         _cursor.transform = CGAffineTransformIdentity;
         [_cursor.layer setAnchorPoint:CGPointMake(0.5, 1.0)];
-        _cursor.frame = CGRectMake(_cursor.frame.origin.x, _cursor.frame.origin.y, _cursor.frame.size.width, _cursor.frame.size.height + 20);
+        _cursor.frame = CGRectMake(_cursor.frame.origin.x, _cursor.frame.origin.y, _cursor.frame.size.width, kInitialCursorHeight + 20 * ([[[BeatBrain sharedBrain] loops] count] - 1));
         [_cursor setCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
     }
     
@@ -100,7 +98,7 @@ static const NSInteger kNumBeats = 16;
 }
 
 - (void)_setupCursor {
-    _cursor = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 4, 50)];
+    _cursor = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 4, kInitialCursorHeight)];
     [_cursor setBackgroundColor:[UIColor redColor]];
     [_cursor setCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
     [_cursor.layer setAnchorPoint:CGPointMake(0.5, 1.0)];
@@ -160,6 +158,29 @@ static const NSInteger kNumBeats = 16;
     
     _cursorNeedsUpdate = NO;
     
+}
+
+- (void)_resetRingViews {
+    for (RingView *ringView in _ringViews) {
+        [ringView removeFromSuperview];
+    }
+    [_ringViews removeAllObjects];
+    _currentOuterRadius = 30;
+    [self refreshLoops];
+}
+
+- (void)didRemoveLoop {
+    
+    if ([[[BeatBrain sharedBrain] loops] count] >= 1) {
+        _cursor.transform = CGAffineTransformIdentity;
+        [_cursor.layer setAnchorPoint:CGPointMake(0.5, 1.0)];
+        _cursor.frame = CGRectMake(_cursor.frame.origin.x, _cursor.frame.origin.y, _cursor.frame.size.width, kInitialCursorHeight + 20 * ([[[BeatBrain sharedBrain] loops] count] - 1));
+        [_cursor setCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
+    } else if ([[[BeatBrain sharedBrain] loops] count] <= 0) {
+        [_cursor setHidden:YES];
+    }
+    
+    [self _resetRingViews];
 }
 
 - (void)didAddLoop:(Loop *)loop {

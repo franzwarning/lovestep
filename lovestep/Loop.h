@@ -20,6 +20,8 @@ static const NSInteger kHeight = 12;
 @property (nonatomic) NSInteger user;
 @property (nonatomic) Instrument *instrument;
 
++ (instancetype)randomLoop;
+
 - (id)initWithLength:(NSInteger)length name:(NSString *)name instrument:(Instrument *)instrument user:(NSInteger)user;
 - (void)procedurallyGenerateGrid;
 

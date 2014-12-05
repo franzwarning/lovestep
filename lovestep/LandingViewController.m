@@ -16,7 +16,7 @@
 @end
 
 static const CGFloat kButtonOriginY = 40.f;
-static const CGFloat kButtonPaddingY = 20.f;
+//static const CGFloat kButtonPaddingY = 20.f;
 static const CGFloat kButtonWidth = 300.f;
 static const CGFloat kButtonHeight = 100.f;
 
@@ -30,6 +30,8 @@ static const CGFloat kButtonHeight = 100.f;
     _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     [_scrollView setAlwaysBounceVertical:YES];
     [self.view addSubview:_scrollView];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:nil forKey:@"invited_user"];
         
     [self _createButtons];
 }

@@ -7,6 +7,8 @@
 //
 
 #import "Loop.h"
+#import "Instrument.h"
+#import "BeatBrain.h"
 
 @interface Loop () {
 
@@ -27,11 +29,22 @@
         
         // Clear the grid
         self.grid = [[NSMutableArray alloc] init];
-//        [self _emptyGrid];
-        [self procedurallyGenerateGrid];
+        [self _emptyGrid];
     }
     
     return self;
+}
+
++ (instancetype)randomLoop {
+    NSInteger numLoops = [[[BeatBrain sharedBrain] loops] count];
+    numLoops += 1;
+    NSString *loopName = [NSString stringWithFormat:@"Randomay %d", (int)numLoops];
+    Loop *newLoop = [[Loop alloc] initWithLength:16
+                                            name:loopName
+                                      instrument:[Instrument randomInstrument]
+                                            user:1];
+    [newLoop procedurallyGenerateGrid];
+    return newLoop;
 }
 
 - (void) procedurallyGenerateGrid {

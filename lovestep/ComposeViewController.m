@@ -16,7 +16,6 @@
 #import "CellView.h"
 
 static const NSInteger kControlXPadding = 10;
-static const NSInteger kControlStartY = 44;
 static const NSInteger kControlYPadding = 10;
 
 @interface ComposeViewController () <StepSequencerDelegate, BeatBrainDelegate> {
@@ -47,11 +46,15 @@ static const NSInteger kControlYPadding = 10;
         // Setup the step sequencer controls
         [self _setupControls];
         
+        NSInteger numLoops = [[[BeatBrain sharedBrain] loops] count];
+        numLoops += 1;
+        NSString *loopName = [NSString stringWithFormat:@"Loop %d", (int)numLoops];
+        
         // Setupt the active loop
         _activeLoop = [[Loop alloc] initWithLength:16
-                                              name:@"Test Loop"
+                                              name:loopName
                                         instrument:instrument
-                                              user:1];
+                                              user:0];
         
     }
     
@@ -65,7 +68,9 @@ static const NSInteger kControlYPadding = 10;
     [super viewDidAppear:animated];
     
     // Setup the beat brain
-    [[BeatBrain sharedBrain] setBbDelegate:self];
+    if (![[[BeatBrain sharedBrain] delegates] containsObject:self]) {
+        [[[BeatBrain sharedBrain] delegates] addObject:self];
+    }
     [[BeatBrain sharedBrain] setActiveLoop:_activeLoop];
 
 }
@@ -99,15 +104,18 @@ static const NSInteger kControlYPadding = 10;
 
 - (void)_setupControls {
     
-    CGFloat yOrigin = kControlStartY;
+    CGFloat clearLoopY = kControlYPadding + 36;
+    CGFloat addLoopY = ((self.view.bounds.size.height/2) + (kControlYPadding/2) + 36/2);
+    CGFloat controlAreaY = self.view.bounds.size.height - 36;
+    CGFloat controlHeight = (controlAreaY/2) - (kControlYPadding * 2);
     
     // Add loop button
     UIButton *addLoopButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [addLoopButton setTitle:@"Add" forState:UIControlStateNormal];
-    [addLoopButton.titleLabel setFont:[UIFont systemFontOfSize:13.f]];
-    [addLoopButton setFrame:CGRectMake(kControlXPadding, yOrigin, 80, 40)];
+    [addLoopButton.titleLabel setFont:[UIFont systemFontOfSize:20.f]];
+    [addLoopButton setFrame:CGRectMake(kControlXPadding, addLoopY, 80, controlHeight)];
     [addLoopButton.layer setBorderColor:[UIColor colorWithHue:0.47 saturation:0.86 brightness:0.74 alpha:1].CGColor];
-    [addLoopButton.layer setBorderWidth:3.0f];
+    [addLoopButton.layer setBorderWidth:2.0f];
     [addLoopButton.layer setCornerRadius:6.f];
     [addLoopButton setTitleColor:[UIColor colorWithHue:0.47 saturation:0.86 brightness:0.74 alpha:1] forState:UIControlStateNormal];
     [addLoopButton setTitleColor:[UIColor colorWithHue:0.47 saturation:0.86 brightness:0.74 alpha:.3] forState:UIControlStateHighlighted];
@@ -115,15 +123,13 @@ static const NSInteger kControlYPadding = 10;
     [addLoopButton addTarget:self action:@selector(_addLoop:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addLoopButton];
     
-    yOrigin += addLoopButton.frame.size.height + kControlYPadding;
-    
     // Clear grid button
     UIButton *clearGridButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [clearGridButton setTitle:@"Clear" forState:UIControlStateNormal];
-    [clearGridButton.titleLabel setFont:[UIFont systemFontOfSize:13.f]];
-    [clearGridButton setFrame:CGRectMake(kControlXPadding, yOrigin, 80, 40)];
+    [clearGridButton.titleLabel setFont:[UIFont systemFontOfSize:20.f]];
+    [clearGridButton setFrame:CGRectMake(kControlXPadding, clearLoopY, 80, controlHeight)];
     [clearGridButton.layer setBorderColor:[UIColor colorWithHue:0.57 saturation:0.76 brightness:0.86 alpha:1].CGColor];
-    [clearGridButton.layer setBorderWidth:3.0f];
+    [clearGridButton.layer setBorderWidth:2.0f];
     [clearGridButton.layer setCornerRadius:6.f];
     [clearGridButton setTitleColor:[UIColor colorWithHue:0.57 saturation:0.76 brightness:0.86 alpha:1] forState:UIControlStateNormal];
     [clearGridButton setTitleColor:[UIColor colorWithHue:0.57 saturation:0.76 brightness:0.86 alpha:.3] forState:UIControlStateHighlighted];

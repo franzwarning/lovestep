@@ -130,10 +130,31 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="a9h-an-fCD"/>
+                    <connections>
+                        <segue destination="yOO-sq-nVV" kind="show" identifier="InviteViewController" id="T75-ZK-LxA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P4I-te-yYs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1599" y="203"/>
+        </scene>
+        <!--Invite View Controller-->
+        <scene sceneID="LEa-r3-aWq">
+            <objects>
+                <viewController id="yOO-sq-nVV" customClass="InviteViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZEl-Xq-CRS"/>
+                        <viewControllerLayoutGuide type="bottom" id="sCG-7Z-pPM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xEM-hi-f6Y">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rA4-5B-qu5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2339" y="203"/>
         </scene>
     </scenes>
 </document>

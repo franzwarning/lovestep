@@ -17,6 +17,8 @@ typedef enum {
    kInstrumentTypeBass
 } InstrumentType;
 
++ (instancetype)randomInstrument;
+
 - (id)initWithType:(InstrumentType)type;
 - (NSString *)getTypeName;
 - (NSString *)soundFontForInstrumentType:(InstrumentType)instrumentType;

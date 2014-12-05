@@ -11,13 +11,16 @@
 #import "Loop.h"
 #import "Instrument.h"
 
-static const NSInteger kMidiNoteVelocity = 90;
+//static const NSInteger kMidiNoteVelocity = 90;
 static const NSInteger kBaseMidiNote = 48;
 static const int kPentatonicIntervals[] = { 0,  3,  5,  7, 10, 12, 15, 17, 19, 22, 24, 27, 29, 31, 34};
 static const int kDiatonicIntervals[] = { 0,  2,  4,  5,  7,  9, 11, 12, 14, 16, 17, 19, 21, 23 };
 
 @interface BeatBrain ()  {
     NSTimer *_timer;
+    NSTimer *_multiplayerCheck;
+    NSTimer *_multiplayerTimer;
+    
     NSMutableArray *_lastNotes;
     NSDate *_startTime;
     NSInteger _counter;
@@ -49,6 +52,8 @@ static BeatBrain *sharedBrain = nil;
     return sharedBrain;
 }
 
+
+
 - (void)_setupBrain {
     self.loops = [[NSMutableArray alloc] init];
     self.bpm = 180;
@@ -56,6 +61,7 @@ static BeatBrain *sharedBrain = nil;
     _counter = 0;
     
     _soundGens = [[NSMutableArray alloc] init];
+    _delegates = [[NSMutableArray alloc] init];
     
     // Setup SoundGen stuff
     NSURL *guitarURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"soundfonts" ofType:@"sf2"]];
@@ -74,13 +80,33 @@ static BeatBrain *sharedBrain = nil;
     [_soundGens addObject:_bassSoundGen];
     [_soundGens addObject:_drumSoundGen];
     [_soundGens addObject:_pianoSoundGen];
+    
 }
 
 - (void)begin {
     _startTime = [NSDate date];
     _timer = [NSTimer scheduledTimerWithTimeInterval:60./self.bpm target:self selector:@selector(_timerCalled:) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+    
+    // Add the timer that see's if there is a multiplayer user
+    _multiplayerCheck = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(_checkForMultiplayer:) userInfo:nil repeats:YES];
 }
+
+- (void)_checkForMultiplayer:(id)sender {
+    
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"invited_user"] && [[[NSUserDefaults standardUserDefaults] valueForKey:@"invited_user"] boolValue] && ![_multiplayerTimer isValid]) {
+        _multiplayerTimer = [NSTimer scheduledTimerWithTimeInterval:5.f target:self selector:@selector(_addRandomLoop:) userInfo:nil repeats:YES];
+        [_multiplayerTimer fire];
+    } else {
+        [_multiplayerTimer invalidate];
+    }
+}
+
+- (void)_addRandomLoop:(id)sender {
+    [self addLoop:[Loop randomLoop]];
+}
+
+
 
 - (void)bpmUpdated {
     [_timer invalidate];
@@ -94,9 +120,11 @@ static BeatBrain *sharedBrain = nil;
 }
 
 - (void)_playBeat:(NSInteger)beat {
-    
-    if ([self.bbDelegate respondsToSelector:@selector(didChangeBeat:)]) {
-        [self.bbDelegate didChangeBeat:beat];
+
+    for (id <BeatBrainDelegate>delegate in self.delegates) {
+        if ([delegate respondsToSelector:@selector(didChangeBeat:)]) {
+            [delegate didChangeBeat:beat];
+        }
     }
     
     for (SoundGen *soundGen in _soundGens) {
@@ -164,13 +192,21 @@ static BeatBrain *sharedBrain = nil;
 - (void)addLoop:(Loop *)newLoop {
     [self.loops addObject:newLoop];
     
-    if ([self.bbDelegate respondsToSelector:@selector(didAddLoop:)]) {
-        [self.bbDelegate didAddLoop:newLoop];
+    for (id <BeatBrainDelegate>delegate in self.delegates) {
+        if ([delegate respondsToSelector:@selector(didAddLoop:)]) {
+            [delegate didAddLoop:newLoop];
+        }
     }
 }
 
 - (void)removeLoop:(Loop *)loop {
     [self.loops removeObject:loop];
+    
+    for (id <BeatBrainDelegate>delegate in self.delegates) {
+        if ([delegate respondsToSelector:@selector(didRemoveLoop)]) {
+            [delegate didRemoveLoop];
+        }
+    }
 }
 
 - (void)setScaleType:(ScaleType)type {

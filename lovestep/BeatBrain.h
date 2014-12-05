@@ -17,6 +17,7 @@
 @optional
 
 - (void)didAddLoop:(Loop *)loop;
+- (void)didRemoveLoop;
 
 @end
 
@@ -31,8 +32,7 @@ typedef enum {
 @property (nonatomic) NSInteger bpm;
 @property (nonatomic, strong) Loop *activeLoop;
 @property (nonatomic, strong) NSMutableArray *loops;
-
-@property (nonatomic, strong) id <BeatBrainDelegate>bbDelegate;
+@property (nonatomic, strong) NSMutableArray *delegates;
 @property (nonatomic) ScaleType scale;
 
 + (id)sharedBrain;

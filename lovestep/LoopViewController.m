@@ -15,7 +15,7 @@
 #import "LoopVisualizerView.h"
 #import "SettingsViewController.h"
 
-@interface LoopViewController () <UIActionSheetDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface LoopViewController () <UIActionSheetDelegate, UITableViewDataSource, UITableViewDelegate, BeatBrainDelegate> {
     UITableView *_tableView;
     BOOL _tableViewIsEmpty;
     LoopVisualizerView *_lvv;
@@ -41,6 +41,15 @@
     [_tableView.layer setBorderColor:[UIColor colorWithRed:0.89 green:0.89 blue:0.9 alpha:1].CGColor];
     [_tableView.layer setBorderWidth:1.f];
     self.automaticallyAdjustsScrollViewInsets = NO;
+
+    // Allow editing
+    _tableView.allowsMultipleSelectionDuringEditing = NO;
+
+    
+    // Add self to the bbdelegates
+    if (![[[BeatBrain sharedBrain] delegates] containsObject:self]) {
+        [[[BeatBrain sharedBrain] delegates] addObject:self];
+    }
     
     // If there are no loops tell them to add some
     if ([[[BeatBrain sharedBrain] loops] count] == 0) {
@@ -51,7 +60,6 @@
     
     // Setup the loop visualizer view
     _lvv = [[LoopVisualizerView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height/2 - 32)];
-    [[BeatBrain sharedBrain] setBbDelegate:_lvv];
     
     // Add the views as subvies
     [self.view addSubview:_lvv];
@@ -68,7 +76,9 @@
     }
     
     // Make sure the bbdelegate is set
-    [[BeatBrain sharedBrain] setBbDelegate:_lvv];
+    if (![[[BeatBrain sharedBrain] delegates] containsObject:_lvv]) {
+        [[[BeatBrain sharedBrain] delegates] addObject:_lvv];
+    }
     [_lvv refreshLoops];
 
     [_tableView reloadData];
@@ -90,16 +100,28 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:constant];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:constant];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:constant];
     }
     
     if (_tableViewIsEmpty) {
         cell.textLabel.text = @"Add a loop!";
+        [cell.detailTextLabel setText:@""];
+        [cell.detailTextLabel setTextColor:[UIColor blackColor]];
+        [cell.textLabel setTextColor:[UIColor blackColor]];
     } else {
         Loop *currentLoop = [[[BeatBrain sharedBrain] loops] objectAtIndex:indexPath.row];
         
+        NSString *username = nil;
+        if (currentLoop.user == 0) {
+            username = @"Human";
+        } else if (currentLoop.user == 1) {
+            username = @"Computer";
+        }
+        
         UIColor *textColor = [_lvv getColorForLoop:currentLoop];
         [cell.textLabel setTextColor:textColor];
+        [cell.detailTextLabel setTextColor:textColor];
+        [cell.detailTextLabel setText:username];
         [cell.textLabel setText:[NSString stringWithFormat:@"%@: %@", [currentLoop.instrument getTypeName], currentLoop.name]];
     }
   
@@ -109,6 +131,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if ([[[BeatBrain sharedBrain] loops] count] > 0) {
+        _tableViewIsEmpty = NO;
+    } else {
+        _tableViewIsEmpty = YES;
+    }
+    
     if (_tableViewIsEmpty) return 1;
     return [[[BeatBrain sharedBrain] loops] count];
 }
@@ -118,6 +146,12 @@
     return 1;
 }
 
+#pragma mark BeatBrainDelegate Methods
+
+- (void)didAddLoop:(Loop *)loop {
+    [_tableView reloadData];
+}
+
 #pragma mark UITableViewDelegate Methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -125,6 +159,21 @@
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (_tableViewIsEmpty) return NO;
+    else return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        Loop *currentLoop = [[[BeatBrain sharedBrain] loops] objectAtIndex:indexPath.row];
+        [[BeatBrain sharedBrain] removeLoop:currentLoop];
+        
+        [_tableView reloadData];
+    }
+}
 #pragma mark Private Methods
 
 - (void)_settingsHit:(id)sender {
