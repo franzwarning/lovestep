@@ -30,9 +30,9 @@
 //    int bottomBound = height - topBound;
     int changeBPMDim = 80;
     
-    int row1Y = 200;
-    int row2Y = 300;
-    int row3Y = 400;
+    int row1Y = 100;
+    int row2Y = 200;
+    int row3Y = 300;
     int row4y = 550;
     int buttonHeight = changeBPMDim;
     

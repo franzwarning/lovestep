@@ -108,6 +108,7 @@
         [cell.detailTextLabel setText:@""];
         [cell.detailTextLabel setTextColor:[UIColor blackColor]];
         [cell.textLabel setTextColor:[UIColor blackColor]];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else {
         Loop *currentLoop = [[[BeatBrain sharedBrain] loops] objectAtIndex:indexPath.row];
         
@@ -119,6 +120,7 @@
         }
         
         UIColor *textColor = [_lvv getColorForLoop:currentLoop];
+        cell.accessoryType = UITableViewCellAccessoryNone;
         [cell.textLabel setTextColor:textColor];
         [cell.detailTextLabel setTextColor:textColor];
         [cell.detailTextLabel setText:username];
@@ -156,6 +158,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (_tableViewIsEmpty) {
+        [self _addLoop:self];
+    }
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
