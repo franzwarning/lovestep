@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class Loop;
+
 @interface RingView : UIView
 
-- (id)initWithFrame:(CGRect)frame outerRadius:(CGFloat)outerRadius innerRadius:(CGFloat)innerRadius;
+@property (nonatomic, strong) Loop *loop;
+
+- (id)initWithFrame:(CGRect)frame outerRadius:(CGFloat)outerRadius innerRadius:(CGFloat)innerRadius loop:(Loop *)loop;
 
 @end

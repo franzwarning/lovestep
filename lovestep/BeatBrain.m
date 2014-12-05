@@ -81,6 +81,11 @@ static BeatBrain *sharedBrain = nil;
     _timer = [NSTimer scheduledTimerWithTimeInterval:60./self.bpm target:self selector:@selector(_timerCalled:) userInfo:nil repeats:YES];
 }
 
+- (void)bpmUpdated {
+    [_timer invalidate];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:60./self.bpm target:self selector:@selector(_timerCalled:) userInfo:nil repeats:YES];
+}
+
 - (void)_timerCalled:(id)sender {
     [self _playBeat:_counter];
     _counter = (_counter + 1) % 16;

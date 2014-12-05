@@ -27,8 +27,8 @@
         
         // Clear the grid
         self.grid = [[NSMutableArray alloc] init];
-        //[self _emptyGrid];
-        [self procedurallyGenerateGrid];
+        [self _emptyGrid];
+//        [self procedurallyGenerateGrid];
     }
     
     return self;

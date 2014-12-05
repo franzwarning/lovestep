@@ -41,5 +41,6 @@ typedef enum {
 - (void)removeLoop:(Loop *)loop;
 - (void)begin;
 - (void)setScaleType:(ScaleType)type;
+- (void)bpmUpdated;
 
 @end

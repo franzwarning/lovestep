@@ -99,7 +99,7 @@ static const NSInteger kControlYPadding = 10;
 
 - (void)_setupControls {
     
-    CGFloat yOrigin = kControlXPadding;
+    CGFloat yOrigin = kControlStartY;
     
     // Add loop button
     UIButton *addLoopButton = [UIButton buttonWithType:UIButtonTypeCustom];

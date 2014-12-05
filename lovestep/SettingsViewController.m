@@ -105,6 +105,7 @@
    NSInteger bpm = [[BeatBrain sharedBrain] bpm];
    bpm += 10;
    [[BeatBrain sharedBrain] setBpm:bpm];
+    [[BeatBrain sharedBrain] bpmUpdated];
    bpmLabel.text = [NSString stringWithFormat:@"%d bpm", bpm];
 }
 
@@ -112,6 +113,7 @@
    NSInteger bpm = [[BeatBrain sharedBrain] bpm];
    bpm -= 10;
    [[BeatBrain sharedBrain] setBpm:bpm];
+    [[BeatBrain sharedBrain] bpmUpdated];
    bpmLabel.text = [NSString stringWithFormat:@"%d bpm", bpm];
 }
 

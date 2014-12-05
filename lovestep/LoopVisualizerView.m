@@ -13,8 +13,9 @@
 static const NSInteger kNumBeats = 16;
 
 @interface LoopVisualizerView () {
-    NSMutableArray *_loopViews;
+    NSMutableArray *_ringViews;
     UIView *_cursor;
+    CGFloat _currentOuterRadius;
 }
 
 @end
@@ -30,12 +31,13 @@ static const NSInteger kNumBeats = 16;
         // Set background color
         [self setBackgroundColor:[UIColor whiteColor]];
         
+        _currentOuterRadius = 50;
+        
         // Add self to bbDelegate
         [[BeatBrain sharedBrain] setBbDelegate:self];
         
         // Init the loopviews array
-        _loopViews = [[NSMutableArray alloc] init];
-        [self _resizeLoopViews];
+        _ringViews = [[NSMutableArray alloc] init];
         
         // Add the cursor
         [self _setupCursor];
@@ -45,16 +47,16 @@ static const NSInteger kNumBeats = 16;
 
 #pragma mark Private Methods
 
-- (void)_resizeLoopViews {
+- (void)_addRingViewForLoop:(Loop *)loop {
     
-    for (int i = 0; i < 1; i++) {
-        
-        CGFloat outerRadius = 50 + 20*i;
-        CGFloat innerRadius = outerRadius - 20;
-        UIView *newRing = [self createRingWithOuterRadius:outerRadius innerRadius:innerRadius];
-        [newRing setCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
-        [self addSubview:newRing];
-    }
+    CGFloat outerRadius = _currentOuterRadius + 20;
+    CGFloat innerRadius = outerRadius - 20;
+    RingView *newRing = [self createRingWithOuterRadius:outerRadius innerRadius:innerRadius loop:loop];
+    [newRing setCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
+    [self addSubview:newRing];
+    
+    [_ringViews addObject:newRing];
+    _currentOuterRadius += 40;
 }
 
 - (void)_setupCursor {
@@ -68,18 +70,16 @@ static const NSInteger kNumBeats = 16;
     [self addSubview:_cursor];
 }
 
-- (UIView *)createRingWithOuterRadius:(CGFloat)outerRadius innerRadius:(CGFloat)innerRadius {
+- (RingView *)createRingWithOuterRadius:(CGFloat)outerRadius innerRadius:(CGFloat)innerRadius loop:(Loop *)loop {
     
-    return [[RingView alloc] initWithFrame:CGRectMake(0, 0, outerRadius*2, outerRadius*2) outerRadius:outerRadius innerRadius:innerRadius];
+    return [[RingView alloc] initWithFrame:CGRectMake(0, 0, outerRadius*2, outerRadius*2) outerRadius:outerRadius innerRadius:innerRadius loop:loop];
     
 }
 
 #pragma mark BeatBrainDelegate Methods
 
 - (void)didChangeBeat:(NSInteger)beat {
-    
-    NSLog(@"Beat: %d", beat);
-    
+        
     if (beat == 0) {
 
         CGFloat duration  = 60 / ([[BeatBrain sharedBrain] bpm] / (CGFloat)kNumBeats);
@@ -96,7 +96,7 @@ static const NSInteger kNumBeats = 16;
 }
 
 - (void)didAddLoop:(Loop *)loop {
-//    [self _organizeLoopViews];
+    [self _addRingViewForLoop:loop];
 }
 
 @end
