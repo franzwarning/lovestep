@@ -31,8 +31,8 @@
     [super viewDidLoad];
     
     // Add the right navbar item
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(_addLoop:)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(_settingsHit:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Add Loop" style:UIBarButtonItemStylePlain target:self action:@selector(_addLoop:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Session" style:UIBarButtonItemStylePlain target:self action:@selector(_settingsHit:)];
     
     // Setup the table view
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height/2 + 32, self.view.bounds.size.width, self.view.bounds.size.height/2 - 32)];
@@ -71,7 +71,6 @@
     [[BeatBrain sharedBrain] setBbDelegate:_lvv];
     [_lvv refreshLoops];
 
-    
     [_tableView reloadData];
 }
 
@@ -95,9 +94,12 @@
     }
     
     if (_tableViewIsEmpty) {
-        cell.textLabel.text = @"Tap + to add a loop!";
+        cell.textLabel.text = @"Add a loop!";
     } else {
         Loop *currentLoop = [[[BeatBrain sharedBrain] loops] objectAtIndex:indexPath.row];
+        
+        UIColor *textColor = [_lvv getColorForLoop:currentLoop];
+        [cell.textLabel setTextColor:textColor];
         [cell.textLabel setText:[NSString stringWithFormat:@"%@: %@", [currentLoop.instrument getTypeName], currentLoop.name]];
     }
   

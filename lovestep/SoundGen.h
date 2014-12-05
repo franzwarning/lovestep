@@ -13,12 +13,13 @@
 
 @interface SoundGen : NSObject <AVAudioSessionDelegate>
 
--(id)initWithSoundFontURL:(NSURL *)soundFontURL patchNumber:(NSInteger)patchNumber;
+-(id)initWithSoundFontURL:(NSURL *)soundFontURL patchNumber:(NSInteger)patchNumber bankNumber:(NSInteger)bankNumber;
 -(void)playMidiNote:(NSInteger)note velocity:(NSInteger)velocity;
 -(void)stopPlayingMidiNote:(NSInteger)note;
 -(void)stopPlayingAllNotes;
 
 @property (nonatomic, strong) NSURL *soundFontURL;
 @property (nonatomic) NSInteger patchNumber;
+@property (nonatomic) NSInteger bankNumber;
 
 @end

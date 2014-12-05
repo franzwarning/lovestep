@@ -16,9 +16,9 @@
 		AF2023331A1EDB7A00EDDEDA /* CellView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2023321A1EDB7A00EDDEDA /* CellView.m */; };
 		AF4C06631A1E9DC10018FF26 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4C06621A1E9DC10018FF26 /* SettingsViewController.m */; };
 		AF4C06661A1E9F980018FF26 /* RotationAwareNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4C06651A1E9F980018FF26 /* RotationAwareNavigationController.m */; };
-		AF4C06681A1EAB6F0018FF26 /* piano.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = AF4C06671A1EAB6F0018FF26 /* piano.sf2 */; };
 		AF4C06691A1EAB9E0018FF26 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFA3D7501A1DBFC300580F5C /* LaunchScreen.xib */; };
 		AF4C066A1A1EAB9E0018FF26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFA3D74B1A1DBFC300580F5C /* Main.storyboard */; };
+		AF8AF27D1A318BD200ADC5BB /* soundfonts.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = AF8AF27C1A318BD200ADC5BB /* soundfonts.sf2 */; };
 		AFA3D7441A1DBFC300580F5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFA3D7431A1DBFC300580F5C /* main.m */; };
 		AFA3D7471A1DBFC300580F5C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFA3D7461A1DBFC300580F5C /* AppDelegate.m */; };
 		AFA3D74A1A1DBFC300580F5C /* LandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFA3D7491A1DBFC300580F5C /* LandingViewController.m */; };
@@ -28,9 +28,6 @@
 		AFC4CA591A1E71B4000F2FE6 /* LoopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC4CA581A1E71B4000F2FE6 /* LoopViewController.m */; };
 		AFC4CA5C1A1E71BC000F2FE6 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC4CA5B1A1E71BC000F2FE6 /* ComposeViewController.m */; };
 		AFC4CA611A1E7312000F2FE6 /* SoundGen.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC4CA601A1E7312000F2FE6 /* SoundGen.m */; };
-		AFE764461A2FEBCF00784D35 /* bass.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = AFE764451A2FEBCF00784D35 /* bass.sf2 */; };
-		AFE764551A2FEE4800784D35 /* guitar.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = AFE764531A2FEE4800784D35 /* guitar.sf2 */; };
-		AFE764601A30024B00784D35 /* drum.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = AFE7645F1A30024B00784D35 /* drum.sf2 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +59,7 @@
 		AF4C06621A1E9DC10018FF26 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		AF4C06641A1E9F980018FF26 /* RotationAwareNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotationAwareNavigationController.h; sourceTree = "<group>"; };
 		AF4C06651A1E9F980018FF26 /* RotationAwareNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotationAwareNavigationController.m; sourceTree = "<group>"; };
-		AF4C06671A1EAB6F0018FF26 /* piano.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = piano.sf2; sourceTree = "<group>"; };
+		AF8AF27C1A318BD200ADC5BB /* soundfonts.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = soundfonts.sf2; sourceTree = "<group>"; };
 		AFA3D73E1A1DBFC300580F5C /* lovestep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lovestep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFA3D7421A1DBFC300580F5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFA3D7431A1DBFC300580F5C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -83,9 +80,6 @@
 		AFC4CA5B1A1E71BC000F2FE6 /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		AFC4CA5F1A1E7312000F2FE6 /* SoundGen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundGen.h; sourceTree = "<group>"; };
 		AFC4CA601A1E7312000F2FE6 /* SoundGen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundGen.m; sourceTree = "<group>"; };
-		AFE764451A2FEBCF00784D35 /* bass.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bass.sf2; sourceTree = "<group>"; };
-		AFE764531A2FEE4800784D35 /* guitar.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = guitar.sf2; sourceTree = "<group>"; };
-		AFE7645F1A30024B00784D35 /* drum.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = drum.sf2; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,10 +201,7 @@
 		AFC4CA551A1E7193000F2FE6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AFE7645F1A30024B00784D35 /* drum.sf2 */,
-				AFE764531A2FEE4800784D35 /* guitar.sf2 */,
-				AFE764451A2FEBCF00784D35 /* bass.sf2 */,
-				AF4C06671A1EAB6F0018FF26 /* piano.sf2 */,
+				AF8AF27C1A318BD200ADC5BB /* soundfonts.sf2 */,
 				AFA3D74E1A1DBFC300580F5C /* Images.xcassets */,
 				AFA3D7501A1DBFC300580F5C /* LaunchScreen.xib */,
 			);
@@ -324,13 +315,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFE764601A30024B00784D35 /* drum.sf2 in Resources */,
 				AF4C06691A1EAB9E0018FF26 /* LaunchScreen.xib in Resources */,
-				AFE764551A2FEE4800784D35 /* guitar.sf2 in Resources */,
+				AF8AF27D1A318BD200ADC5BB /* soundfonts.sf2 in Resources */,
 				AF4C066A1A1EAB9E0018FF26 /* Main.storyboard in Resources */,
-				AF4C06681A1EAB6F0018FF26 /* piano.sf2 in Resources */,
 				AFA3D74F1A1DBFC300580F5C /* Images.xcassets in Resources */,
-				AFE764461A2FEBCF00784D35 /* bass.sf2 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

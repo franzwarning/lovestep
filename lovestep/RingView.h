@@ -13,6 +13,7 @@
 @interface RingView : UIView
 
 @property (nonatomic, strong) Loop *loop;
+@property (nonatomic, strong) UIColor *loopColor;
 
 - (id)initWithFrame:(CGRect)frame outerRadius:(CGFloat)outerRadius innerRadius:(CGFloat)innerRadius loop:(Loop *)loop;
 

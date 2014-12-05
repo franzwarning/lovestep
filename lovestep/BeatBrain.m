@@ -58,17 +58,17 @@ static BeatBrain *sharedBrain = nil;
     _soundGens = [[NSMutableArray alloc] init];
     
     // Setup SoundGen stuff
-    NSURL *guitarURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"guitar" ofType:@"sf2"]];
-    _guitarSoundGen = [[SoundGen alloc] initWithSoundFontURL:guitarURL patchNumber:1];
+    NSURL *guitarURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"soundfonts" ofType:@"sf2"]];
+    _guitarSoundGen = [[SoundGen alloc] initWithSoundFontURL:guitarURL patchNumber:26 bankNumber:0];
     
-    NSURL *bassURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"bass" ofType:@"sf2"]];
-    _bassSoundGen = [[SoundGen alloc] initWithSoundFontURL:bassURL patchNumber:1];
+    NSURL *bassURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"soundfonts" ofType:@"sf2"]];
+    _bassSoundGen = [[SoundGen alloc] initWithSoundFontURL:bassURL patchNumber:32 bankNumber:0];
     
-    NSURL *drumURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"drum" ofType:@"sf2"]];
-    _drumSoundGen = [[SoundGen alloc] initWithSoundFontURL:drumURL patchNumber:2];
+    NSURL *drumURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"soundfonts" ofType:@"sf2"]];
+    _drumSoundGen = [[SoundGen alloc] initWithSoundFontURL:drumURL patchNumber:25 bankNumber:120];
     
-    NSURL *pianoURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"piano" ofType:@"sf2"]];
-    _pianoSoundGen = [[SoundGen alloc] initWithSoundFontURL:pianoURL patchNumber:1];
+    NSURL *pianoURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"soundfonts" ofType:@"sf2"]];
+    _pianoSoundGen = [[SoundGen alloc] initWithSoundFontURL:pianoURL patchNumber:1 bankNumber:0];
     
     [_soundGens addObject:_guitarSoundGen];
     [_soundGens addObject:_bassSoundGen];
@@ -121,7 +121,7 @@ static BeatBrain *sharedBrain = nil;
             int midi = kBaseMidiNote;
             if (loop.instrument.type == kInstrumentTypeDrums) {
                 //drum stuff
-                [_drumSoundGen setPatchNumber:j];
+                midi = 47 - j;
                 
             } else {
                 if (self.scale == kScaleTypePentatonic) {
@@ -153,6 +153,7 @@ static BeatBrain *sharedBrain = nil;
     } else if (instrumentType == kInstrumentTypeGuitar) {
         [_guitarSoundGen playMidiNote:midiNote velocity:velocity];
     } else if (instrumentType == kInstrumentTypeBass) {
+        midiNote -= 12;
         [_bassSoundGen playMidiNote:midiNote velocity:velocity];
     } else if (instrumentType == kInstrumentTypeDrums) {
         [_drumSoundGen playMidiNote:midiNote velocity:velocity];

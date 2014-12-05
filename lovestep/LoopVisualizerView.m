@@ -82,18 +82,20 @@ static const NSInteger kNumBeats = 16;
     RingView *newRing = [self createRingWithOuterRadius:outerRadius innerRadius:innerRadius loop:loop];
     [newRing setCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
     [self insertSubview:newRing belowSubview:_cursor];
+    [_ringViews addObject:newRing];
     
     // Increase the cursor height
     if ([[[BeatBrain sharedBrain] loops] count] > 1) {
-        
         _cursor.transform = CGAffineTransformIdentity;
         [_cursor.layer setAnchorPoint:CGPointMake(0.5, 1.0)];
         _cursor.frame = CGRectMake(_cursor.frame.origin.x, _cursor.frame.origin.y, _cursor.frame.size.width, _cursor.frame.size.height + 20);
         [_cursor setCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
     }
-
-
-    [_ringViews addObject:newRing];
+    
+    if ([[[BeatBrain sharedBrain] loops] count] > 0) {
+        [_cursor setHidden:NO];
+    }
+    
     _currentOuterRadius += 20;
 }
 
@@ -105,9 +107,20 @@ static const NSInteger kNumBeats = 16;
     [_cursor.layer setBorderColor:[UIColor whiteColor].CGColor];
     [_cursor.layer setBorderWidth:1.f];
     [_cursor.layer setCornerRadius:1.f];
+    [_cursor setHidden:YES];
     [self addSubview:_cursor];
     
     _cursorNeedsUpdate = NO;
+}
+
+- (UIColor *)getColorForLoop:(Loop *)loop {
+    for (RingView *ringView in _ringViews) {
+        if ([ringView.loop isEqual:loop]) {
+            return ringView.loopColor;
+        }
+    }
+    
+    return nil;
 }
 
 - (RingView *)createRingWithOuterRadius:(CGFloat)outerRadius innerRadius:(CGFloat)innerRadius loop:(Loop *)loop {
@@ -119,7 +132,7 @@ static const NSInteger kNumBeats = 16;
 #pragma mark BeatBrainDelegate Methods
 
 - (void)didChangeBeat:(NSInteger)beat {
-        
+    
     if (_cursorNeedsUpdate) {
         
         if ([_cursor.layer animationForKey:@"rotationAnimation"]) {
@@ -144,9 +157,9 @@ static const NSInteger kNumBeats = 16;
         [_cursor.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
         
     }
-
+    
     _cursorNeedsUpdate = NO;
-
+    
 }
 
 - (void)didAddLoop:(Loop *)loop {

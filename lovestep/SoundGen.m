@@ -38,12 +38,16 @@ enum {
 @synthesize ioUnit              = _ioUnit;
 @synthesize processingGraph     = _processingGraph;
 @synthesize patchNumber         = _patchNumber;
+@synthesize bankNumber          = _bankNumber;
 @synthesize soundFontURL        = _soundFontURL;
 
-- (id)initWithSoundFontURL:(NSURL *)soundFontURL patchNumber:(NSInteger)patchNumber
+- (id)initWithSoundFontURL:(NSURL *)soundFontURL patchNumber:(NSInteger)patchNumber bankNumber:(NSInteger)bankNumber
 {
     if (self = [super init]) {
         self.currentlyPlayingNotes = [[NSMutableSet alloc] init];
+        
+        _patchNumber = patchNumber;
+        _bankNumber = bankNumber;
         
         // Set up the audio session for this app, in the process obtaining the
         // hardware sample rate for use in the audio processing graph.
@@ -57,7 +61,7 @@ enum {
         [self createAUGraph];
         [self configureAndStartAudioProcessingGraph: self.processingGraph];
         
-        [self loadFromDLSOrSoundFont:soundFontURL withPatch:(int)patchNumber];
+        [self loadFromDLSOrSoundFont:soundFontURL withPatch:(int)patchNumber bank:(int)bankNumber];
     }
     return self;
 }
@@ -66,14 +70,21 @@ enum {
 {
     _soundFontURL = soundFontURL;
     
-    [self loadFromDLSOrSoundFont:soundFontURL withPatch:(int)self.patchNumber];
+    [self loadFromDLSOrSoundFont:soundFontURL withPatch:(int)_patchNumber bank:(int)_bankNumber];
 }
 
 - (void)setPatchNumber:(NSInteger)patchNumber
 {
     _patchNumber = patchNumber;
     
-    [self loadFromDLSOrSoundFont:self.soundFontURL withPatch:(int)patchNumber];
+    [self loadFromDLSOrSoundFont:self.soundFontURL withPatch:(int)_patchNumber bank:(int)_bankNumber];
+}
+
+- (void)setBankNumber:(NSInteger)bankNumber
+{
+    _bankNumber = bankNumber;
+    [self loadFromDLSOrSoundFont:self.soundFontURL withPatch:(int)_patchNumber bank:(int)_bankNumber];
+
 }
 
 // Set up the audio session for this app.
@@ -243,7 +254,7 @@ enum {
 
 // this method assumes the class has a member called mySamplerUnit
 // which is an instance of an AUSampler
-- (OSStatus)loadFromDLSOrSoundFont: (NSURL *)bankURL withPatch: (int)presetNumber
+- (OSStatus)loadFromDLSOrSoundFont: (NSURL *)bankURL withPatch: (int)presetNumber bank:(int)bankNumber
 {
     OSStatus result = noErr;
     
@@ -251,9 +262,9 @@ enum {
     AUSamplerBankPresetData bpdata;
     bpdata.bankURL  = (__bridge CFURLRef) bankURL;
     bpdata.bankMSB  = kAUSampler_DefaultMelodicBankMSB;
-    bpdata.bankLSB  = kAUSampler_DefaultBankLSB;
+    bpdata.bankLSB  = bankNumber;
     bpdata.presetID = (UInt8) presetNumber;
-    
+        
     // set the kAUSamplerProperty_LoadPresetFromBank property
     result = AudioUnitSetProperty(self.samplerUnit,
                                   kAUSamplerProperty_LoadPresetFromBank,

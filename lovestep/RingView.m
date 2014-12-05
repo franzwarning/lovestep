@@ -26,6 +26,11 @@
         _innerRadius = innerRadius;
         self.loop = loop;
         
+        CGFloat green = (arc4random()%100) *.01;
+        CGFloat blue = (arc4random()%100) * .01;
+        CGFloat red = (arc4random()%100) *.01;
+        self.loopColor = [UIColor colorWithRed:red green:green blue:blue alpha:1];
+        
         [self.layer setCornerRadius:outerRadius];
         [self.layer setMasksToBounds:YES];
         [self setOpaque:NO];
@@ -36,11 +41,6 @@
 
 - (void)drawRect:(CGRect)rect {
     
-    CGFloat green=(arc4random()%100) *.01;
-    CGFloat blue=(arc4random()%100) * .01;
-    CGFloat red=(arc4random()%100) *.01;
-    UIColor *randColor=[UIColor colorWithRed:red green:green blue:blue alpha:1];
-
     CGRect innerRect = CGRectMake(_outerRadius - _innerRadius, _outerRadius - _innerRadius, _innerRadius*2, _innerRadius*2);
     UIBezierPath *bigPath = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:_outerRadius];
     UIBezierPath *clipPath = [UIBezierPath bezierPathWithRect:CGRectInfinite];
@@ -50,7 +50,7 @@
     
     CGContextSaveGState(UIGraphicsGetCurrentContext()); {
         [clipPath addClip];
-        [randColor setFill];
+        [self.loopColor setFill];
         [bigPath fill];
     } CGContextRestoreGState(UIGraphicsGetCurrentContext());
 }
