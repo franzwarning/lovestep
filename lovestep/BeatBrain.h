@@ -8,13 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+@class Loop;
+
 @protocol BeatBrainDelegate <NSObject>
 
 - (void)didChangeBeat:(NSInteger)beat;
 
+@optional
+
+- (void)didAddLoop:(Loop *)loop;
+
 @end
 
-@class Loop;
 
 @interface BeatBrain : NSObject
 

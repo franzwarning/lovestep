@@ -1,5 +1,5 @@
 //
-//  LoopVisualizerView.h
+//  RingView.h
 //  lovestep
 //
 //  Created by Raymond Kennedy on 12/4/14.
@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BeatBrain.h"
 
-@interface LoopVisualizerView : UIView <BeatBrainDelegate>
+@interface RingView : UIView
+
+- (id)initWithFrame:(CGRect)frame outerRadius:(CGFloat)outerRadius innerRadius:(CGFloat)innerRadius;
 
 @end

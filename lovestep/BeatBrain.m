@@ -155,6 +155,10 @@ static BeatBrain *sharedBrain = nil;
 
 - (void)addLoop:(Loop *)newLoop {
     [self.loops addObject:newLoop];
+    
+    if ([self.bbDelegate respondsToSelector:@selector(didAddLoop:)]) {
+        [self.bbDelegate didAddLoop:newLoop];
+    }
 }
 
 - (void)removeLoop:(Loop *)loop {

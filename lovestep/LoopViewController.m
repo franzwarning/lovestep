@@ -51,6 +51,7 @@
     
     // Setup the loop visualizer view
     _lvv = [[LoopVisualizerView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height/2 - 32)];
+    [[BeatBrain sharedBrain] setBbDelegate:_lvv];
     
     // Add the views as subvies
     [self.view addSubview:_lvv];
@@ -65,6 +66,10 @@
     } else {
         _tableViewIsEmpty = NO;
     }
+    
+    // Make sure the bbdelegate is set
+    [[BeatBrain sharedBrain] setBbDelegate:_lvv];
+
     
     [_tableView reloadData];
 }
