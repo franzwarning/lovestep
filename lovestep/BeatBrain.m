@@ -68,7 +68,7 @@ static BeatBrain *sharedBrain = nil;
     _drumSoundGen = [[SoundGen alloc] initWithSoundFontURL:drumURL patchNumber:25 bankNumber:120];
     
     NSURL *pianoURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"soundfonts" ofType:@"sf2"]];
-    _pianoSoundGen = [[SoundGen alloc] initWithSoundFontURL:pianoURL patchNumber:1 bankNumber:0];
+    _pianoSoundGen = [[SoundGen alloc] initWithSoundFontURL:pianoURL patchNumber:2 bankNumber:0];
     
     [_soundGens addObject:_guitarSoundGen];
     [_soundGens addObject:_bassSoundGen];
@@ -135,9 +135,9 @@ static BeatBrain *sharedBrain = nil;
             int velocity = 90;
             switch (loop.instrument.type) {
                 case kInstrumentTypeDrums:  velocity = 90; break;
-                case kInstrumentTypeGuitar: velocity = 70; break;
+                case kInstrumentTypeGuitar: velocity = 90; break;
                 case kInstrumentTypeBass:   velocity = 90; break;
-                case kInstrumentTypePiano:  velocity = 90; break;
+                case kInstrumentTypePiano:  velocity = 70; break;
             }
             
             [self _playNote:midi withInstrumentType:loop.instrument.type velocity:velocity];
