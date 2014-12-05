@@ -155,6 +155,7 @@ static const NSInteger kControlYPadding = 10;
 
 - (void)_clearLoop:(id)sender
 {
+    _onCount = 0;
     [_ssv clearGrid];
     
     for (int i = 0; i < kNumCols; i++) {
