@@ -185,6 +185,8 @@
 #pragma mark Private Methods
 
 - (void)_settingsHit:(id)sender {
+    [(RotationAwareNavigationController *)self.navigationController orientPortrait];
+
     [self performSegueWithIdentifier:@"SettingsViewController" sender:self];
 }
 

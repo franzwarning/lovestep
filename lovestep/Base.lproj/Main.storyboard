@@ -100,10 +100,10 @@
             </objects>
             <point key="canvasLocation" x="934.5" y="930"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Rotation Aware Navigation Controller-->
         <scene sceneID="0hG-j0-TTR">
             <objects>
-                <navigationController id="hbM-S4-DF6" sceneMemberID="viewController">
+                <navigationController id="hbM-S4-DF6" customClass="RotationAwareNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NZc-1g-6V2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

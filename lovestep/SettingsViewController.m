@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "BeatBrain.h"
 #import "LuvButton.h"
+#import "RotationAwareNavigationController.h"
 
 @interface SettingsViewController () {
     UILabel *bpmLabel;
@@ -139,6 +140,8 @@
 }
 
 - (void)_exitSettings:(id)sender {
+    [(RotationAwareNavigationController *)self.navigationController orientPortrait];
+
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

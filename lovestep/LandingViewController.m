@@ -9,6 +9,7 @@
 #import "LandingViewController.h"
 #import "BeatBrain.h"
 #import "LuvButton.h"
+#import "RotationAwareNavigationController.h"
 
 @interface LandingViewController () {
     UIScrollView *_scrollView;
@@ -57,6 +58,7 @@ static const CGFloat kButtonHeight = 100.f;
 
 - (void)_createNewSession:(id)sender {
     [[BeatBrain sharedBrain] begin];
+    [(RotationAwareNavigationController *)self.navigationController orientPortrait];
 
     [self performSegueWithIdentifier:@"mainViewController" sender:self];
 }
