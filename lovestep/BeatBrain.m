@@ -65,7 +65,7 @@ static BeatBrain *sharedBrain = nil;
     _bassSoundGen = [[SoundGen alloc] initWithSoundFontURL:bassURL patchNumber:1];
     
     NSURL *drumURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"drum" ofType:@"sf2"]];
-    _drumSoundGen = [[SoundGen alloc] initWithSoundFontURL:drumURL patchNumber:7];
+    _drumSoundGen = [[SoundGen alloc] initWithSoundFontURL:drumURL patchNumber:2];
     
     NSURL *pianoURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"piano" ofType:@"sf2"]];
     _pianoSoundGen = [[SoundGen alloc] initWithSoundFontURL:pianoURL patchNumber:1];
@@ -79,11 +79,13 @@ static BeatBrain *sharedBrain = nil;
 - (void)begin {
     _startTime = [NSDate date];
     _timer = [NSTimer scheduledTimerWithTimeInterval:60./self.bpm target:self selector:@selector(_timerCalled:) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)bpmUpdated {
     [_timer invalidate];
     _timer = [NSTimer scheduledTimerWithTimeInterval:60./self.bpm target:self selector:@selector(_timerCalled:) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)_timerCalled:(id)sender {
@@ -113,33 +115,33 @@ static BeatBrain *sharedBrain = nil;
 - (void)_playColumn:(NSInteger)column forLoop:(Loop *)loop {
     for (int j = 0; j < kHeight; j++) {
         if ([loop.grid[column][j] boolValue]) {
-
-           //Select midi
-           int step = kHeight - 1 - j;
-           int midi = kBaseMidiNote;
-           if (loop.instrument.type == kInstrumentTypeDrums) {
-              //drum stuff
-               [_drumSoundGen setPatchNumber:j];
-               
-           } else {
-              if (self.scale == kScaleTypePentatonic) {
-                 midi = kBaseMidiNote + kPentatonicIntervals[step];
-              } else if (self.scale == kScaleTypeDiatonic) {
-                 midi = kBaseMidiNote + kDiatonicIntervals[step];
-              }
-           }
-           
-           //Select velocity (mix instruments)
-           int velocity = 90;
-           switch (loop.instrument.type) {
-              case kInstrumentTypeDrums:  velocity = 90; break;
-              case kInstrumentTypeGuitar: velocity = 70; break;
-              case kInstrumentTypeBass:   velocity = 90; break;
-              case kInstrumentTypePiano:  velocity = 90; break;
-           }
-           
-           [self _playNote:midi withInstrumentType:loop.instrument.type velocity:velocity];
-
+            
+            //Select midi
+            int step = kHeight - 1 - j;
+            int midi = kBaseMidiNote;
+            if (loop.instrument.type == kInstrumentTypeDrums) {
+                //drum stuff
+                [_drumSoundGen setPatchNumber:j];
+                
+            } else {
+                if (self.scale == kScaleTypePentatonic) {
+                    midi = kBaseMidiNote + kPentatonicIntervals[step];
+                } else if (self.scale == kScaleTypeDiatonic) {
+                    midi = kBaseMidiNote + kDiatonicIntervals[step];
+                }
+            }
+            
+            //Select velocity (mix instruments)
+            int velocity = 90;
+            switch (loop.instrument.type) {
+                case kInstrumentTypeDrums:  velocity = 90; break;
+                case kInstrumentTypeGuitar: velocity = 70; break;
+                case kInstrumentTypeBass:   velocity = 90; break;
+                case kInstrumentTypePiano:  velocity = 90; break;
+            }
+            
+            [self _playNote:midi withInstrumentType:loop.instrument.type velocity:velocity];
+            
         }
     }
 }
@@ -171,7 +173,7 @@ static BeatBrain *sharedBrain = nil;
 }
 
 - (void)setScaleType:(ScaleType)type {
-   self.scale = type;
+    self.scale = type;
 }
 
 

@@ -10,12 +10,15 @@
 #import "Loop.h"
 #import "RingView.h"
 
+#define DEGREES_RADIANS(angle) ((angle) / 180.0 * M_PI)
+
 static const NSInteger kNumBeats = 16;
 
 @interface LoopVisualizerView () {
     NSMutableArray *_ringViews;
     UIView *_cursor;
     CGFloat _currentOuterRadius;
+    BOOL _cursorNeedsUpdate;
 }
 
 @end
@@ -49,6 +52,8 @@ static const NSInteger kNumBeats = 16;
 
 - (void)refreshLoops {
     
+    _cursorNeedsUpdate = YES;
+    
     // Go through each loop
     for (Loop *loop in [[BeatBrain sharedBrain] loops]) {
         
@@ -72,7 +77,6 @@ static const NSInteger kNumBeats = 16;
 - (void)_addRingViewForLoop:(Loop *)loop {
     
     // Check to make sure the loops doesn't already exist
-    
     CGFloat outerRadius = _currentOuterRadius + 20;
     CGFloat innerRadius = outerRadius - 20;
     RingView *newRing = [self createRingWithOuterRadius:outerRadius innerRadius:innerRadius loop:loop];
@@ -100,6 +104,8 @@ static const NSInteger kNumBeats = 16;
     [_cursor.layer setBorderWidth:1.f];
     [_cursor.layer setCornerRadius:1.f];
     [self addSubview:_cursor];
+    
+    _cursorNeedsUpdate = NO;
 }
 
 - (RingView *)createRingWithOuterRadius:(CGFloat)outerRadius innerRadius:(CGFloat)innerRadius loop:(Loop *)loop {
@@ -112,23 +118,35 @@ static const NSInteger kNumBeats = 16;
 
 - (void)didChangeBeat:(NSInteger)beat {
         
-    if (beat == 0) {
+    if (_cursorNeedsUpdate) {
         
         if ([_cursor.layer animationForKey:@"rotationAnimation"]) {
             [_cursor.layer removeAnimationForKey:@"rotationAnimation"];
         }
-
+        
+        CGFloat degs = (beat/(CGFloat)kNumBeats) * 360;
+        CGFloat rads = DEGREES_RADIANS(degs);
+        CGFloat toRads = (M_PI * 2) + rads;
+        
         CGFloat duration  = 60 / ([[BeatBrain sharedBrain] bpm] / (CGFloat)kNumBeats);
         
+        _cursor.transform = CGAffineTransformRotate(_cursor.transform, rads);
+        
         CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-        rotationAnimation.toValue = @(M_PI * 2);
+        rotationAnimation.toValue = @(toRads);
+        rotationAnimation.fromValue = @(rads);
         rotationAnimation.duration = duration;
         rotationAnimation.autoreverses = NO;
         rotationAnimation.repeatCount = HUGE_VALF;
         rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
         [_cursor.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
-
+        
+        
+        
     }
+
+    _cursorNeedsUpdate = NO;
+
 }
 
 - (void)didAddLoop:(Loop *)loop {
