@@ -14,6 +14,7 @@
 #import "BeatBrain.h"
 #import "StepSequencerView.h"
 #import "CellView.h"
+#import "LuvButton.h"
 
 static const NSInteger kControlXPadding = 10;
 static const NSInteger kControlYPadding = 10;
@@ -88,7 +89,6 @@ static const NSInteger kControlYPadding = 10;
 
 - (void)_setupStepSequencerView {
     _ssv = [[StepSequencerView alloc] initWithFrame:CGRectMake(100, 0, 567, 375)];
-    [_ssv setBackgroundColor:[UIColor lightGrayColor]];
     [_ssv setDelegate:self];
     [self.view addSubview:_ssv];
 }
@@ -110,7 +110,7 @@ static const NSInteger kControlYPadding = 10;
     CGFloat controlHeight = (controlAreaY/2) - (kControlYPadding * 2);
     
     // Add loop button
-    UIButton *addLoopButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    LuvButton *addLoopButton = [LuvButton buttonWithType:UIButtonTypeCustom];
     [addLoopButton setTitle:@"Add" forState:UIControlStateNormal];
     [addLoopButton.titleLabel setFont:[UIFont systemFontOfSize:20.f]];
     [addLoopButton setFrame:CGRectMake(kControlXPadding, addLoopY, 80, controlHeight)];
@@ -118,13 +118,12 @@ static const NSInteger kControlYPadding = 10;
     [addLoopButton.layer setBorderWidth:2.0f];
     [addLoopButton.layer setCornerRadius:6.f];
     [addLoopButton setTitleColor:[UIColor colorWithHue:0.47 saturation:0.86 brightness:0.74 alpha:1] forState:UIControlStateNormal];
-    [addLoopButton setTitleColor:[UIColor colorWithHue:0.47 saturation:0.86 brightness:0.74 alpha:.3] forState:UIControlStateHighlighted];
     
     [addLoopButton addTarget:self action:@selector(_addLoop:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addLoopButton];
     
     // Clear grid button
-    UIButton *clearGridButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    LuvButton *clearGridButton = [LuvButton buttonWithType:UIButtonTypeCustom];
     [clearGridButton setTitle:@"Clear" forState:UIControlStateNormal];
     [clearGridButton.titleLabel setFont:[UIFont systemFontOfSize:20.f]];
     [clearGridButton setFrame:CGRectMake(kControlXPadding, clearLoopY, 80, controlHeight)];
@@ -132,7 +131,6 @@ static const NSInteger kControlYPadding = 10;
     [clearGridButton.layer setBorderWidth:2.0f];
     [clearGridButton.layer setCornerRadius:6.f];
     [clearGridButton setTitleColor:[UIColor colorWithHue:0.57 saturation:0.76 brightness:0.86 alpha:1] forState:UIControlStateNormal];
-    [clearGridButton setTitleColor:[UIColor colorWithHue:0.57 saturation:0.76 brightness:0.86 alpha:.3] forState:UIControlStateHighlighted];
     
     [clearGridButton addTarget:self action:@selector(_clearLoop:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:clearGridButton];

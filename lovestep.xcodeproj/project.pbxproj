@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AF03A32A1A319C1100C732B4 /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF03A3291A319C1100C732B4 /* InviteViewController.m */; };
+		AF03A32D1A31BA9E00C732B4 /* LuvButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AF03A32C1A31BA9E00C732B4 /* LuvButton.m */; };
 		AF1F7EA11A3113F700D3DBAC /* LoopVisualizerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1F7EA01A3113F700D3DBAC /* LoopVisualizerView.m */; };
 		AF1F7EA41A31271B00D3DBAC /* RingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1F7EA31A31271B00D3DBAC /* RingView.m */; };
 		AF2023271A1EC82000EDDEDA /* Loop.m in Sources */ = {isa = PBXBuildFile; fileRef = AF2023261A1EC82000EDDEDA /* Loop.m */; };
@@ -44,6 +45,8 @@
 /* Begin PBXFileReference section */
 		AF03A3281A319C1100C732B4 /* InviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteViewController.h; sourceTree = "<group>"; };
 		AF03A3291A319C1100C732B4 /* InviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteViewController.m; sourceTree = "<group>"; };
+		AF03A32B1A31BA9E00C732B4 /* LuvButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuvButton.h; sourceTree = "<group>"; };
+		AF03A32C1A31BA9E00C732B4 /* LuvButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuvButton.m; sourceTree = "<group>"; };
 		AF1F7E9F1A3113F700D3DBAC /* LoopVisualizerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoopVisualizerView.h; sourceTree = "<group>"; };
 		AF1F7EA01A3113F700D3DBAC /* LoopVisualizerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoopVisualizerView.m; sourceTree = "<group>"; };
 		AF1F7EA21A31271B00D3DBAC /* RingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingView.h; sourceTree = "<group>"; };
@@ -115,6 +118,8 @@
 				AF1F7EA01A3113F700D3DBAC /* LoopVisualizerView.m */,
 				AF1F7EA21A31271B00D3DBAC /* RingView.h */,
 				AF1F7EA31A31271B00D3DBAC /* RingView.m */,
+				AF03A32B1A31BA9E00C732B4 /* LuvButton.h */,
+				AF03A32C1A31BA9E00C732B4 /* LuvButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -353,6 +358,7 @@
 				AF2023301A1EDB6E00EDDEDA /* StepSequencerView.m in Sources */,
 				AF20232D1A1ECAEA00EDDEDA /* BeatBrain.m in Sources */,
 				AFC4CA591A1E71B4000F2FE6 /* LoopViewController.m in Sources */,
+				AF03A32D1A31BA9E00C732B4 /* LuvButton.m in Sources */,
 				AF1F7EA41A31271B00D3DBAC /* RingView.m in Sources */,
 				AF1F7EA11A3113F700D3DBAC /* LoopVisualizerView.m in Sources */,
 				AF4C06631A1E9DC10018FF26 /* SettingsViewController.m in Sources */,

@@ -25,7 +25,7 @@
         
         // Setup the highlight view
         _highlightView = [[UIView alloc] initWithFrame:self.bounds];
-        [_highlightView setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5f]];
+        [_highlightView setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.3f]];
         [self addSubview:_highlightView];
         [_highlightView setHidden:YES];
         
@@ -45,17 +45,16 @@
     } else {
         [self turnOn];
     }
-    
+
     if ([self.delegate respondsToSelector:@selector(cellTapped:)]) {
         [self.delegate cellTapped:self];
     }
 }
 
 - (void)turnOff {
-    [self setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.2]];
+    [self setBackgroundColor:[UIColor lightGrayColor]];
     [self.layer setBorderColor:[UIColor whiteColor].CGColor];
-    [self.layer setBorderWidth:2.f];
-    [self.layer setCornerRadius:4.f];
+    [self.layer setBorderWidth:1.f];
     self.isOn = NO;
 }
 

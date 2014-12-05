@@ -8,6 +8,7 @@
 
 #import "LandingViewController.h"
 #import "BeatBrain.h"
+#import "LuvButton.h"
 
 @interface LandingViewController () {
     UIScrollView *_scrollView;
@@ -41,8 +42,7 @@ static const CGFloat kButtonHeight = 100.f;
     CGFloat currentY = 0;
     currentY += kButtonOriginY;
     
-    UIButton *newSessionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [newSessionButton setFrame:CGRectMake(self.view.frame.size.width/2 - kButtonWidth/2, currentY, kButtonWidth, kButtonHeight)];
+    LuvButton *newSessionButton = [[LuvButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 - kButtonWidth/2, currentY, kButtonWidth, kButtonHeight)];
     [newSessionButton.layer setBorderColor:[UIColor colorWithRed:0.2 green:0.6 blue:0.86 alpha:1].CGColor];
     [newSessionButton.layer setBorderWidth:3.f];
     [newSessionButton.layer setCornerRadius:6.f];

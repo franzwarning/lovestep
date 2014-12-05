@@ -9,7 +9,7 @@
 #import "StepSequencerView.h"
 #import "CellView.h"
 
-static const CGFloat kCellMargin = 5;
+static const CGFloat kCellMargin = 0;
 
 @interface StepSequencerView () <CellViewDelegate> {
     NSMutableArray *_cells;
@@ -24,6 +24,7 @@ static const CGFloat kCellMargin = 5;
     self = [super initWithFrame:frame];
     if (self) {
         _cells = [[NSMutableArray alloc] init];
+        [self setBackgroundColor:[UIColor blackColor]];
         [self _setupGrid];
     }
     return self;
