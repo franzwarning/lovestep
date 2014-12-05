@@ -99,11 +99,11 @@ static const NSInteger kControlYPadding = 10;
 
 - (void)_setupControls {
     
-    CGFloat yOrigin = kControlStartY;
+    CGFloat yOrigin = kControlXPadding;
     
     // Add loop button
     UIButton *addLoopButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [addLoopButton setTitle:@"Add Loop" forState:UIControlStateNormal];
+    [addLoopButton setTitle:@"Add" forState:UIControlStateNormal];
     [addLoopButton.titleLabel setFont:[UIFont systemFontOfSize:13.f]];
     [addLoopButton setFrame:CGRectMake(kControlXPadding, yOrigin, 80, 40)];
     [addLoopButton.layer setBorderColor:[UIColor colorWithHue:0.47 saturation:0.86 brightness:0.74 alpha:1].CGColor];

@@ -161,5 +161,9 @@ static BeatBrain *sharedBrain = nil;
     [self.loops removeObject:loop];
 }
 
+- (void)setScaleType:(ScaleType)type {
+   self.scale = type;
+}
+
 
 @end

@@ -29,7 +29,6 @@
         self.grid = [[NSMutableArray alloc] init];
         //[self _emptyGrid];
         [self procedurallyGenerateGrid];
-
     }
     
     return self;
