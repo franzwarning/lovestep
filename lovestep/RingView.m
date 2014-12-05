@@ -25,12 +25,7 @@
         _outerRadius = outerRadius;
         _innerRadius = innerRadius;
         self.loop = loop;
-        
-        CGFloat green = (arc4random()%100) *.01;
-        CGFloat blue = (arc4random()%100) * .01;
-        CGFloat red = (arc4random()%100) *.01;
-        self.loopColor = [UIColor colorWithRed:red green:green blue:blue alpha:1];
-        
+                
         [self.layer setCornerRadius:outerRadius];
         [self.layer setMasksToBounds:YES];
         [self setOpaque:NO];
@@ -50,7 +45,7 @@
     
     CGContextSaveGState(UIGraphicsGetCurrentContext()); {
         [clipPath addClip];
-        [self.loopColor setFill];
+        [self.loop.color setFill];
         [bigPath fill];
     } CGContextRestoreGState(UIGraphicsGetCurrentContext());
 }

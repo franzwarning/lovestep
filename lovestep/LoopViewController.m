@@ -80,6 +80,10 @@
         [[[BeatBrain sharedBrain] delegates] addObject:_lvv];
     }
     [_lvv refreshLoops];
+    
+    if ([[[BeatBrain sharedBrain] loops] count] >= kMaxLoops) {
+        [self.navigationItem.rightBarButtonItem setEnabled:NO];
+    }
 
     [_tableView reloadData];
 }
@@ -119,10 +123,9 @@
             username = @"Computer";
         }
         
-        UIColor *textColor = [_lvv getColorForLoop:currentLoop];
         cell.accessoryType = UITableViewCellAccessoryNone;
-        [cell.textLabel setTextColor:textColor];
-        [cell.detailTextLabel setTextColor:textColor];
+        [cell.textLabel setTextColor:currentLoop.color];
+        [cell.detailTextLabel setTextColor:currentLoop.color];
         [cell.detailTextLabel setText:username];
         [cell.textLabel setText:[NSString stringWithFormat:@"%@: %@", [currentLoop.instrument getTypeName], currentLoop.name]];
     }

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class Instrument;
 
@@ -19,6 +20,8 @@ static const NSInteger kHeight = 12;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic) NSInteger user;
 @property (nonatomic) Instrument *instrument;
+@property (nonatomic) NSInteger number;
+@property (nonatomic, strong) UIColor *color;
 
 + (instancetype)randomLoop;
 

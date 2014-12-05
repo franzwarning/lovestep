@@ -12,6 +12,5 @@
 @interface LoopVisualizerView : UIView <BeatBrainDelegate>
 
 - (void)refreshLoops;
-- (UIColor *)getColorForLoop:(Loop *)loop;
 
 @end

@@ -22,6 +22,8 @@ static const NSInteger kControlYPadding = 10;
 @interface ComposeViewController () <StepSequencerDelegate, BeatBrainDelegate> {
     StepSequencerView *_ssv;
     Loop *_activeLoop;
+    NSInteger _onCount;
+    LuvButton *_addLoopButton;
 }
 
 @end
@@ -46,17 +48,19 @@ static const NSInteger kControlYPadding = 10;
         
         // Setup the step sequencer controls
         [self _setupControls];
-        
-        NSInteger numLoops = [[[BeatBrain sharedBrain] loops] count];
-        numLoops += 1;
-        NSString *loopName = [NSString stringWithFormat:@"Loop %d", (int)numLoops];
-        
+
+        // Set the on count to 0
+        _onCount = 0;
+        [_addLoopButton.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+        [_addLoopButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [_addLoopButton setEnabled:NO];
+
         // Setupt the active loop
         _activeLoop = [[Loop alloc] initWithLength:16
-                                              name:loopName
+                                              name:@""
                                         instrument:instrument
                                               user:0];
-        
+        [_activeLoop setName:[NSString stringWithFormat:@"Loop %d", (int)_activeLoop.number]];
     }
     
     return self;
@@ -84,6 +88,19 @@ static const NSInteger kControlYPadding = 10;
     NSInteger col = cell.col;
     BOOL isOn = cell.isOn;
     
+    if (isOn) _onCount++;
+    else _onCount--;
+    
+    if (_onCount <= 0) {
+        [_addLoopButton.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+        [_addLoopButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [_addLoopButton setEnabled:NO];
+    } else {
+        [_addLoopButton.layer setBorderColor:[UIColor colorWithHue:0.47 saturation:0.86 brightness:0.74 alpha:1].CGColor];
+        [_addLoopButton setTitleColor:[UIColor colorWithHue:0.47 saturation:0.86 brightness:0.74 alpha:1] forState:UIControlStateNormal];
+        [_addLoopButton setEnabled:YES];
+    }
+    
     _activeLoop.grid[col][row] = [NSNumber numberWithBool:isOn];
 }
 
@@ -110,17 +127,17 @@ static const NSInteger kControlYPadding = 10;
     CGFloat controlHeight = (controlAreaY/2) - (kControlYPadding * 2);
     
     // Add loop button
-    LuvButton *addLoopButton = [LuvButton buttonWithType:UIButtonTypeCustom];
-    [addLoopButton setTitle:@"Add" forState:UIControlStateNormal];
-    [addLoopButton.titleLabel setFont:[UIFont systemFontOfSize:20.f]];
-    [addLoopButton setFrame:CGRectMake(kControlXPadding, addLoopY, 80, controlHeight)];
-    [addLoopButton.layer setBorderColor:[UIColor colorWithHue:0.47 saturation:0.86 brightness:0.74 alpha:1].CGColor];
-    [addLoopButton.layer setBorderWidth:2.0f];
-    [addLoopButton.layer setCornerRadius:6.f];
-    [addLoopButton setTitleColor:[UIColor colorWithHue:0.47 saturation:0.86 brightness:0.74 alpha:1] forState:UIControlStateNormal];
+    _addLoopButton = [LuvButton buttonWithType:UIButtonTypeCustom];
+    [_addLoopButton setTitle:@"Add" forState:UIControlStateNormal];
+    [_addLoopButton.titleLabel setFont:[UIFont systemFontOfSize:20.f]];
+    [_addLoopButton setFrame:CGRectMake(kControlXPadding, addLoopY, 80, controlHeight)];
+    [_addLoopButton.layer setBorderColor:[UIColor colorWithHue:0.47 saturation:0.86 brightness:0.74 alpha:1].CGColor];
+    [_addLoopButton.layer setBorderWidth:2.0f];
+    [_addLoopButton.layer setCornerRadius:6.f];
+    [_addLoopButton setTitleColor:[UIColor colorWithHue:0.47 saturation:0.86 brightness:0.74 alpha:1] forState:UIControlStateNormal];
     
-    [addLoopButton addTarget:self action:@selector(_addLoop:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:addLoopButton];
+    [_addLoopButton addTarget:self action:@selector(_addLoop:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_addLoopButton];
     
     // Clear grid button
     LuvButton *clearGridButton = [LuvButton buttonWithType:UIButtonTypeCustom];

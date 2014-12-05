@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17AD1B81F4F59DC4D19FDED8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A572720D556F1CCDA38EEB3 /* libPods.a */; };
 		AF03A32A1A319C1100C732B4 /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF03A3291A319C1100C732B4 /* InviteViewController.m */; };
 		AF03A32D1A31BA9E00C732B4 /* LuvButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AF03A32C1A31BA9E00C732B4 /* LuvButton.m */; };
 		AF1F7EA11A3113F700D3DBAC /* LoopVisualizerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AF1F7EA01A3113F700D3DBAC /* LoopVisualizerView.m */; };
@@ -20,6 +21,7 @@
 		AF4C06661A1E9F980018FF26 /* RotationAwareNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AF4C06651A1E9F980018FF26 /* RotationAwareNavigationController.m */; };
 		AF4C06691A1EAB9E0018FF26 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFA3D7501A1DBFC300580F5C /* LaunchScreen.xib */; };
 		AF4C066A1A1EAB9E0018FF26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFA3D74B1A1DBFC300580F5C /* Main.storyboard */; };
+		AF62162E1A31C3F400B6A55B /* LuvColorScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = AF62162D1A31C3F400B6A55B /* LuvColorScheme.m */; };
 		AF8AF27D1A318BD200ADC5BB /* soundfonts.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = AF8AF27C1A318BD200ADC5BB /* soundfonts.sf2 */; };
 		AFA3D7441A1DBFC300580F5C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFA3D7431A1DBFC300580F5C /* main.m */; };
 		AFA3D7471A1DBFC300580F5C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFA3D7461A1DBFC300580F5C /* AppDelegate.m */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		487AE6A957D3F016080274DF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		9A572720D556F1CCDA38EEB3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF03A3281A319C1100C732B4 /* InviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteViewController.h; sourceTree = "<group>"; };
 		AF03A3291A319C1100C732B4 /* InviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteViewController.m; sourceTree = "<group>"; };
 		AF03A32B1A31BA9E00C732B4 /* LuvButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuvButton.h; sourceTree = "<group>"; };
@@ -65,6 +69,8 @@
 		AF4C06621A1E9DC10018FF26 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		AF4C06641A1E9F980018FF26 /* RotationAwareNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotationAwareNavigationController.h; sourceTree = "<group>"; };
 		AF4C06651A1E9F980018FF26 /* RotationAwareNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotationAwareNavigationController.m; sourceTree = "<group>"; };
+		AF62162C1A31C3F400B6A55B /* LuvColorScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuvColorScheme.h; sourceTree = "<group>"; };
+		AF62162D1A31C3F400B6A55B /* LuvColorScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuvColorScheme.m; sourceTree = "<group>"; };
 		AF8AF27C1A318BD200ADC5BB /* soundfonts.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = soundfonts.sf2; sourceTree = "<group>"; };
 		AFA3D73E1A1DBFC300580F5C /* lovestep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lovestep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFA3D7421A1DBFC300580F5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -86,6 +92,7 @@
 		AFC4CA5B1A1E71BC000F2FE6 /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		AFC4CA5F1A1E7312000F2FE6 /* SoundGen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundGen.h; sourceTree = "<group>"; };
 		AFC4CA601A1E7312000F2FE6 /* SoundGen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundGen.m; sourceTree = "<group>"; };
+		EB02071F31ECB9F5B7553047 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +101,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFC4CA531A1E717C000F2FE6 /* AudioToolbox.framework in Frameworks */,
+				17AD1B81F4F59DC4D19FDED8 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +115,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65DFFB2848196C34D467B159 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A572720D556F1CCDA38EEB3 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AF2023231A1EC3B400EDDEDA /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +149,8 @@
 				AF2023291A1ECA0100EDDEDA /* Instrument.m */,
 				AF20232B1A1ECAEA00EDDEDA /* BeatBrain.h */,
 				AF20232C1A1ECAEA00EDDEDA /* BeatBrain.m */,
+				AF62162C1A31C3F400B6A55B /* LuvColorScheme.h */,
+				AF62162D1A31C3F400B6A55B /* LuvColorScheme.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -144,6 +162,8 @@
 				AFA3D7401A1DBFC300580F5C /* lovestep */,
 				AFA3D75A1A1DBFC300580F5C /* lovestepTests */,
 				AFA3D73F1A1DBFC300580F5C /* Products */,
+				CFDFD4CBA912FC32E7C94E55 /* Pods */,
+				65DFFB2848196C34D467B159 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -244,6 +264,15 @@
 			name = SoundGen;
 			sourceTree = "<group>";
 		};
+		CFDFD4CBA912FC32E7C94E55 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				487AE6A957D3F016080274DF /* Pods.debug.xcconfig */,
+				EB02071F31ECB9F5B7553047 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -251,9 +280,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AFA3D7611A1DBFC300580F5C /* Build configuration list for PBXNativeTarget "lovestep" */;
 			buildPhases = (
+				231E73B99D6EAA35ACE0142A /* Check Pods Manifest.lock */,
 				AFA3D73A1A1DBFC300580F5C /* Sources */,
 				AFA3D73B1A1DBFC300580F5C /* Frameworks */,
 				AFA3D73C1A1DBFC300580F5C /* Resources */,
+				233437BEE12C1B5F5F91BEC0 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -341,6 +372,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		231E73B99D6EAA35ACE0142A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		233437BEE12C1B5F5F91BEC0 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AFA3D73A1A1DBFC300580F5C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -362,6 +426,7 @@
 				AF1F7EA41A31271B00D3DBAC /* RingView.m in Sources */,
 				AF1F7EA11A3113F700D3DBAC /* LoopVisualizerView.m in Sources */,
 				AF4C06631A1E9DC10018FF26 /* SettingsViewController.m in Sources */,
+				AF62162E1A31C3F400B6A55B /* LuvColorScheme.m in Sources */,
 				AF03A32A1A319C1100C732B4 /* InviteViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,6 +547,7 @@
 		};
 		AFA3D7621A1DBFC300580F5C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 487AE6A957D3F016080274DF /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -496,6 +562,7 @@
 		};
 		AFA3D7631A1DBFC300580F5C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB02071F31ECB9F5B7553047 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

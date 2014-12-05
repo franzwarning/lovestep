@@ -10,6 +10,7 @@
 #import "SoundGen.h"
 #import "Loop.h"
 #import "Instrument.h"
+#import "LuvColorScheme.h"
 
 //static const NSInteger kMidiNoteVelocity = 90;
 static const NSInteger kBaseMidiNote = 48;
@@ -60,8 +61,11 @@ static BeatBrain *sharedBrain = nil;
     self.scale = kScaleTypePentatonic;
     _counter = 0;
     
+    //
     _soundGens = [[NSMutableArray alloc] init];
     _delegates = [[NSMutableArray alloc] init];
+    
+    self.colorScheme = [LuvColorScheme randomColorScheme];
     
     // Setup SoundGen stuff
     NSURL *guitarURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:@"soundfonts" ofType:@"sf2"]];
@@ -90,13 +94,17 @@ static BeatBrain *sharedBrain = nil;
     
     // Add the timer that see's if there is a multiplayer user
     _multiplayerCheck = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(_checkForMultiplayer:) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:_multiplayerCheck forMode:NSRunLoopCommonModes];
+
 }
 
 - (void)_checkForMultiplayer:(id)sender {
     
     if ([[NSUserDefaults standardUserDefaults] valueForKey:@"invited_user"] && [[[NSUserDefaults standardUserDefaults] valueForKey:@"invited_user"] boolValue] && ![_multiplayerTimer isValid]) {
-        _multiplayerTimer = [NSTimer scheduledTimerWithTimeInterval:5.f target:self selector:@selector(_addRandomLoop:) userInfo:nil repeats:YES];
+        _multiplayerTimer = [NSTimer scheduledTimerWithTimeInterval:20.f target:self selector:@selector(_addRandomLoop:) userInfo:nil repeats:YES];
         [_multiplayerTimer fire];
+        [[NSRunLoop mainRunLoop] addTimer:_multiplayerTimer forMode:NSRunLoopCommonModes];
+
     } else {
         [_multiplayerTimer invalidate];
     }
@@ -190,6 +198,11 @@ static BeatBrain *sharedBrain = nil;
 }
 
 - (void)addLoop:(Loop *)newLoop {
+    
+    if ([[self loops] count] >= kMaxLoops) {
+        return;
+    }
+    
     [self.loops addObject:newLoop];
     
     for (id <BeatBrainDelegate>delegate in self.delegates) {
@@ -200,7 +213,12 @@ static BeatBrain *sharedBrain = nil;
 }
 
 - (void)removeLoop:(Loop *)loop {
+    
     [self.loops removeObject:loop];
+    
+    if ([[[BeatBrain sharedBrain] loops] count] == 0) {
+        self.colorScheme = [LuvColorScheme randomColorScheme];
+    }
     
     for (id <BeatBrainDelegate>delegate in self.delegates) {
         if ([delegate respondsToSelector:@selector(didRemoveLoop)]) {

@@ -1,0 +1,10 @@
+PODS:
+  - Colours (5.5.0)
+
+DEPENDENCIES:
+  - Colours
+
+SPEC CHECKSUMS:
+  Colours: 7abeb0fdebe2da3d8bd7305aee0798375f51f5d8
+
+COCOAPODS: 0.34.4

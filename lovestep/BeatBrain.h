@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+static const int kMaxLoops = 10;
+
 @class Loop;
+@class LuvColorScheme;
 
 @protocol BeatBrainDelegate <NSObject>
 
@@ -34,6 +37,7 @@ typedef enum {
 @property (nonatomic, strong) NSMutableArray *loops;
 @property (nonatomic, strong) NSMutableArray *delegates;
 @property (nonatomic) ScaleType scale;
+@property (nonatomic, strong) LuvColorScheme *colorScheme;
 
 + (id)sharedBrain;
 

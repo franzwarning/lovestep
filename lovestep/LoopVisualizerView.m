@@ -111,16 +111,6 @@ static const NSInteger kInitialCursorHeight = 50;
     _cursorNeedsUpdate = NO;
 }
 
-- (UIColor *)getColorForLoop:(Loop *)loop {
-    for (RingView *ringView in _ringViews) {
-        if ([ringView.loop isEqual:loop]) {
-            return ringView.loopColor;
-        }
-    }
-    
-    return nil;
-}
-
 - (RingView *)createRingWithOuterRadius:(CGFloat)outerRadius innerRadius:(CGFloat)innerRadius loop:(Loop *)loop {
     
     return [[RingView alloc] initWithFrame:CGRectMake(0, 0, outerRadius*2, outerRadius*2) outerRadius:outerRadius innerRadius:innerRadius loop:loop];

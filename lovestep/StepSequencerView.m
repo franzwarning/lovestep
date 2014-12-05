@@ -44,15 +44,15 @@ static const CGFloat kCellMargin = 0;
 
 - (void)_setupGrid {
     
-    CGFloat cellWidth = (self.frame.size.width - ((kNumCols + 1) * kCellMargin)) / kNumCols;
-    CGFloat cellHeight = (self.frame.size.height - ((kNumRows + 1) * kCellMargin)) / kNumRows;
+    CGFloat cellWidth = (self.frame.size.width - 1) / kNumCols;
+    CGFloat cellHeight = (self.frame.size.height - 1) / kNumRows;
     
     CGFloat currentY = kCellMargin;
     CGFloat currentX = kCellMargin;
     
     for (int i = 0; i < kNumCols; i++) {
         
-        currentY = kCellMargin;
+        currentY = 1;
         
         NSMutableArray *colCells = [[NSMutableArray alloc] init];
         for (int j = 0; j < kNumRows; j++) {
