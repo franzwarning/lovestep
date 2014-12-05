@@ -101,7 +101,7 @@ static BeatBrain *sharedBrain = nil;
 - (void)_checkForMultiplayer:(id)sender {
     
     if ([[NSUserDefaults standardUserDefaults] valueForKey:@"invited_user"] && [[[NSUserDefaults standardUserDefaults] valueForKey:@"invited_user"] boolValue] && ![_multiplayerTimer isValid]) {
-        _multiplayerTimer = [NSTimer scheduledTimerWithTimeInterval:20.f target:self selector:@selector(_addRandomLoop:) userInfo:nil repeats:YES];
+        _multiplayerTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(_addRandomLoop:) userInfo:nil repeats:YES];
         [_multiplayerTimer fire];
         [[NSRunLoop mainRunLoop] addTimer:_multiplayerTimer forMode:NSRunLoopCommonModes];
 
@@ -113,8 +113,6 @@ static BeatBrain *sharedBrain = nil;
 - (void)_addRandomLoop:(id)sender {
     [self addLoop:[Loop randomLoop]];
 }
-
-
 
 - (void)bpmUpdated {
     [_timer invalidate];

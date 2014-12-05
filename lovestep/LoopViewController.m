@@ -83,6 +83,9 @@
     
     if ([[[BeatBrain sharedBrain] loops] count] >= kMaxLoops) {
         [self.navigationItem.rightBarButtonItem setEnabled:NO];
+    } else {
+        [self.navigationItem.rightBarButtonItem setEnabled:YES];
+
     }
 
     [_tableView reloadData];
@@ -181,6 +184,13 @@
         
         Loop *currentLoop = [[[BeatBrain sharedBrain] loops] objectAtIndex:indexPath.row];
         [[BeatBrain sharedBrain] removeLoop:currentLoop];
+        
+        if ([[[BeatBrain sharedBrain] loops] count] >= kMaxLoops) {
+            [self.navigationItem.rightBarButtonItem setEnabled:NO];
+        } else {
+            [self.navigationItem.rightBarButtonItem setEnabled:YES];
+
+        }
         
         [_tableView reloadData];
     }
