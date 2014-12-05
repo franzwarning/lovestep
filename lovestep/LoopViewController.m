@@ -75,6 +75,14 @@
     [_tableView reloadData];
 }
 
+- (void)needsRefresh {
+    [_lvv refreshLoops];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+
 #pragma mark UITableViewDataSource Methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

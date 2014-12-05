@@ -10,4 +10,6 @@
 
 @interface LoopViewController : UIViewController
 
+- (void)needsRefresh;
+
 @end

@@ -85,6 +85,8 @@ static const NSInteger kNumBeats = 16;
     
     // Increase the cursor height
     if ([[[BeatBrain sharedBrain] loops] count] > 1) {
+        
+        _cursor.transform = CGAffineTransformIdentity;
         [_cursor.layer setAnchorPoint:CGPointMake(0.5, 1.0)];
         _cursor.frame = CGRectMake(_cursor.frame.origin.x, _cursor.frame.origin.y, _cursor.frame.size.width, _cursor.frame.size.height + 20);
         [_cursor setCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
@@ -140,8 +142,6 @@ static const NSInteger kNumBeats = 16;
         rotationAnimation.repeatCount = HUGE_VALF;
         rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
         [_cursor.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
-        
-        
         
     }
 
