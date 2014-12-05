@@ -32,6 +32,7 @@
 		AFC4CA591A1E71B4000F2FE6 /* LoopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC4CA581A1E71B4000F2FE6 /* LoopViewController.m */; };
 		AFC4CA5C1A1E71BC000F2FE6 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC4CA5B1A1E71BC000F2FE6 /* ComposeViewController.m */; };
 		AFC4CA611A1E7312000F2FE6 /* SoundGen.m in Sources */ = {isa = PBXBuildFile; fileRef = AFC4CA601A1E7312000F2FE6 /* SoundGen.m */; };
+		AFEEE5111A32510A004BC60E /* NSMutableArray+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = AFEEE5101A32510A004BC60E /* NSMutableArray+Utils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,8 @@
 		AFC4CA5B1A1E71BC000F2FE6 /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		AFC4CA5F1A1E7312000F2FE6 /* SoundGen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundGen.h; sourceTree = "<group>"; };
 		AFC4CA601A1E7312000F2FE6 /* SoundGen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundGen.m; sourceTree = "<group>"; };
+		AFEEE50F1A32510A004BC60E /* NSMutableArray+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Utils.h"; sourceTree = "<group>"; };
+		AFEEE5101A32510A004BC60E /* NSMutableArray+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Utils.m"; sourceTree = "<group>"; };
 		EB02071F31ECB9F5B7553047 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -179,6 +182,7 @@
 		AFA3D7401A1DBFC300580F5C /* lovestep */ = {
 			isa = PBXGroup;
 			children = (
+				AFEEE50E1A3250F0004BC60E /* Categories */,
 				AF2023241A1EC80F00EDDEDA /* Objects */,
 				AF2023231A1EC3B400EDDEDA /* Views */,
 				AFC4CA5E1A1E72F7000F2FE6 /* SoundGen */,
@@ -262,6 +266,15 @@
 				AFC4CA601A1E7312000F2FE6 /* SoundGen.m */,
 			);
 			name = SoundGen;
+			sourceTree = "<group>";
+		};
+		AFEEE50E1A3250F0004BC60E /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				AFEEE50F1A32510A004BC60E /* NSMutableArray+Utils.h */,
+				AFEEE5101A32510A004BC60E /* NSMutableArray+Utils.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		CFDFD4CBA912FC32E7C94E55 /* Pods */ = {
@@ -419,6 +432,7 @@
 				AF20232A1A1ECA0100EDDEDA /* Instrument.m in Sources */,
 				AFC4CA611A1E7312000F2FE6 /* SoundGen.m in Sources */,
 				AF2023331A1EDB7A00EDDEDA /* CellView.m in Sources */,
+				AFEEE5111A32510A004BC60E /* NSMutableArray+Utils.m in Sources */,
 				AF2023301A1EDB6E00EDDEDA /* StepSequencerView.m in Sources */,
 				AF20232D1A1ECAEA00EDDEDA /* BeatBrain.m in Sources */,
 				AFC4CA591A1E71B4000F2FE6 /* LoopViewController.m in Sources */,

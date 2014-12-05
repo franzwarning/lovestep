@@ -8,10 +8,11 @@
 
 #import "LuvColorScheme.h"
 #import "Colours.h"
+#import "NSMutableArray+Utils.h"
 
 static NSArray *starterColors = nil;
 
-static NSInteger kNumColors = 16;
+static NSInteger kNumColors = 14;
 
 @interface LuvColorScheme () {
     NSMutableArray *_colorsInScheme;
@@ -33,8 +34,6 @@ static NSInteger kNumColors = 16;
                           [UIColor colorWithRed:0.16 green:0.5 blue:0.73 alpha:1],
                           [UIColor colorWithRed:0.61 green:0.35 blue:0.71 alpha:1],
                           [UIColor colorWithRed:0.56 green:0.27 blue:0.68 alpha:1],
-                          [UIColor colorWithRed:0.2 green:0.29 blue:0.37 alpha:1],
-                          [UIColor colorWithRed:0.17 green:0.24 blue:0.31 alpha:1],
                           [UIColor colorWithRed:0.95 green:0.77 blue:0.06 alpha:1],
                           [UIColor colorWithRed:0.95 green:0.61 blue:0.07 alpha:1],
                           [UIColor colorWithRed:0.9 green:0.49 blue:0.13 alpha:1],
@@ -73,6 +72,8 @@ static NSInteger kNumColors = 16;
     
     _colorsInScheme = [[NSMutableArray alloc] initWithArray:scheme1];
     [_colorsInScheme addObjectsFromArray:scheme2];
+    
+    [_colorsInScheme shuffle];
     
 }
 @end

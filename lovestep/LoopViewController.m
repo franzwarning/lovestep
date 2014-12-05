@@ -154,6 +154,9 @@
 #pragma mark BeatBrainDelegate Methods
 
 - (void)didAddLoop:(Loop *)loop {
+    if ([[[BeatBrain sharedBrain] loops] count] >= kMaxLoops) {
+        [self.navigationItem.rightBarButtonItem setEnabled:NO];
+    }
     [_tableView reloadData];
 }
 
