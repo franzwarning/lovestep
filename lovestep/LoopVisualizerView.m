@@ -16,7 +16,8 @@ static const NSInteger kNumBeats = 16;
 static const NSInteger kInitialCursorHeight = 50;
 
 @interface LoopVisualizerView () {
-    NSMutableArray *_ringViews;
+    NSMutableArray *_ringLookup;
+    NSMutableDictionary *_ringViewLookup;
     UIView *_cursor;
     CGFloat _currentOuterRadius;
     BOOL _cursorNeedsUpdate;
@@ -36,9 +37,9 @@ static const NSInteger kInitialCursorHeight = 50;
         [self setBackgroundColor:[UIColor whiteColor]];
         
         _currentOuterRadius = 30;
-        
-        // Init the loopviews array
-        _ringViews = [[NSMutableArray alloc] init];
+                
+        // Ringviewlookup has all the ring views associated with the loop
+        _ringViewLookup = [[NSMutableDictionary alloc] init];
         
         // Add the cursor
         [self _setupCursor];
@@ -55,18 +56,18 @@ static const NSInteger kInitialCursorHeight = 50;
     // Go through each loop
     for (Loop *loop in [[BeatBrain sharedBrain] loops]) {
         
-        BOOL hasRing = NO;
-        
         // Check to see if we have a ring for that loop
-        for (RingView *ringView in _ringViews) {
-            if ([ringView.loop isEqual:loop]) {
-                hasRing = YES;
-            }
-        }
-        
-        if (!hasRing) {
+        if (![_ringViewLookup objectForKey:[loop uniqueId]]) {
             [self _addRingViewForLoop:loop];
         }
+    }
+}
+
+- (void)didSetLoop:(Loop *)loop enabled:(BOOL)enabled {
+    // Get the ringview in the lookup
+    RingView *ringView = nil;
+    if ((ringView = [_ringViewLookup objectForKey:[loop uniqueId]])) {
+        [ringView setNeedsDisplay];
     }
 }
 
@@ -80,7 +81,7 @@ static const NSInteger kInitialCursorHeight = 50;
     RingView *newRing = [self createRingWithOuterRadius:outerRadius innerRadius:innerRadius loop:loop];
     [newRing setCenter:CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))];
     [self insertSubview:newRing belowSubview:_cursor];
-    [_ringViews addObject:newRing];
+    [_ringViewLookup setObject:newRing forKey:[loop uniqueId]];
     
     // Increase the cursor height
     if ([[[BeatBrain sharedBrain] loops] count] > 1) {
@@ -151,10 +152,12 @@ static const NSInteger kInitialCursorHeight = 50;
 }
 
 - (void)_resetRingViews {
-    for (RingView *ringView in _ringViews) {
+    for (NSString *key in _ringViewLookup) {
+        RingView *ringView = [_ringViewLookup objectForKey:key];
         [ringView removeFromSuperview];
     }
-    [_ringViews removeAllObjects];
+    
+    [_ringViewLookup removeAllObjects];
     _currentOuterRadius = 30;
     [self refreshLoops];
 }

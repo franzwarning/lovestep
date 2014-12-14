@@ -12,5 +12,6 @@
 @interface LoopVisualizerView : UIView <BeatBrainDelegate>
 
 - (void)refreshLoops;
+- (void)didSetLoop:(Loop *)loop enabled:(BOOL)enabled;
 
 @end

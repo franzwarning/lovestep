@@ -19,9 +19,10 @@
 @implementation RingView
 
 - (id)initWithFrame:(CGRect)frame outerRadius:(CGFloat)outerRadius innerRadius:(CGFloat)innerRadius loop:(Loop *)loop {
+    
     self = [super initWithFrame:frame];
+    
     if (self) {
-        
         _outerRadius = outerRadius;
         _innerRadius = innerRadius;
         self.loop = loop;
@@ -45,7 +46,11 @@
     
     CGContextSaveGState(UIGraphicsGetCurrentContext()); {
         [clipPath addClip];
-        [self.loop.color setFill];
+        if (self.loop.enabled) {
+            [self.loop.color setFill];
+        } else {
+            [[UIColor lightGrayColor] setFill];
+        }
         [bigPath fill];
     } CGContextRestoreGState(UIGraphicsGetCurrentContext());
 }

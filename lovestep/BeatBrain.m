@@ -95,7 +95,7 @@ static BeatBrain *sharedBrain = nil;
     // Add the timer that see's if there is a multiplayer user
     _multiplayerCheck = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(_checkForMultiplayer:) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:_multiplayerCheck forMode:NSRunLoopCommonModes];
-
+    
 }
 
 - (void)_checkForMultiplayer:(id)sender {
@@ -104,7 +104,7 @@ static BeatBrain *sharedBrain = nil;
         _multiplayerTimer = [NSTimer scheduledTimerWithTimeInterval:10.f target:self selector:@selector(_addRandomLoop:) userInfo:nil repeats:YES];
         [_multiplayerTimer fire];
         [[NSRunLoop mainRunLoop] addTimer:_multiplayerTimer forMode:NSRunLoopCommonModes];
-
+        
     } else {
         [_multiplayerTimer invalidate];
     }
@@ -126,7 +126,7 @@ static BeatBrain *sharedBrain = nil;
 }
 
 - (void)_playBeat:(NSInteger)beat {
-
+    
     for (id <BeatBrainDelegate>delegate in self.delegates) {
         if ([delegate respondsToSelector:@selector(didChangeBeat:)]) {
             [delegate didChangeBeat:beat];
@@ -140,7 +140,9 @@ static BeatBrain *sharedBrain = nil;
     }
     
     for (Loop *loop in self.loops) {
-        [self _playColumn:beat forLoop:loop];
+        if (loop.enabled) {
+            [self _playColumn:beat forLoop:loop];
+        }
     }
     
     [self _playColumn:beat forLoop:_activeLoop];

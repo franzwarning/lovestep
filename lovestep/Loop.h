@@ -22,10 +22,12 @@ static const NSInteger kHeight = 12;
 @property (nonatomic) Instrument *instrument;
 @property (nonatomic) NSInteger number;
 @property (nonatomic, strong) UIColor *color;
+@property (nonatomic) BOOL enabled;
 
 + (instancetype)randomLoop;
 
 - (id)initWithLength:(NSInteger)length name:(NSString *)name instrument:(Instrument *)instrument user:(NSInteger)user;
 - (void)procedurallyGenerateGrid;
+- (NSString *)uniqueId;
 
 @end

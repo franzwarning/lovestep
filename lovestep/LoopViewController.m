@@ -127,8 +127,15 @@
         }
         
         cell.accessoryType = UITableViewCellAccessoryNone;
-        [cell.textLabel setTextColor:currentLoop.color];
-        [cell.detailTextLabel setTextColor:currentLoop.color];
+        if (currentLoop.enabled) {
+            [cell.textLabel setTextColor:currentLoop.color];
+            [cell.detailTextLabel setTextColor:currentLoop.color];
+
+        } else {
+            [cell.textLabel setTextColor:[UIColor lightGrayColor]];
+            [cell.detailTextLabel setTextColor:[UIColor lightGrayColor]];
+
+        }
         [cell.detailTextLabel setText:username];
         [cell.textLabel setText:[NSString stringWithFormat:@"%@: %@", [currentLoop.instrument getTypeName], currentLoop.name]];
     }
@@ -169,6 +176,20 @@
 {
     if (_tableViewIsEmpty) {
         [self _addLoop:self];
+    } else {
+        Loop *currentLoop = [[[BeatBrain sharedBrain] loops] objectAtIndex:indexPath.row];
+        UITableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
+        if (currentLoop.enabled) {
+            currentLoop.enabled = NO;
+            [cell.textLabel setTextColor:[UIColor lightGrayColor]];
+            [cell.detailTextLabel setTextColor:[UIColor lightGrayColor]];
+        } else {
+            currentLoop.enabled = YES;
+            [cell.textLabel setTextColor:currentLoop.color];
+            [cell.detailTextLabel setTextColor:currentLoop.color];
+        }
+        
+        [_lvv didSetLoop:currentLoop enabled:currentLoop.enabled];
     }
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

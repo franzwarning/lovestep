@@ -15,10 +15,10 @@ static const int kMaxLoops = 10;
 
 @protocol BeatBrainDelegate <NSObject>
 
-- (void)didChangeBeat:(NSInteger)beat;
 
 @optional
 
+- (void)didChangeBeat:(NSInteger)beat;
 - (void)didAddLoop:(Loop *)loop;
 - (void)didRemoveLoop;
 

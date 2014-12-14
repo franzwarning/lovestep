@@ -20,7 +20,6 @@
 
 @implementation Loop
 
-
 - (id)initWithLength:(NSInteger)length name:(NSString *)name instrument:(Instrument *)instrument user:(NSInteger)user {
     self = [super init];
     if (self) {
@@ -29,7 +28,7 @@
         self.instrument = instrument;
         self.user = user;
         self.number = [[[BeatBrain sharedBrain] loops] count] + 1;
-
+        self.enabled = YES;
         self.color = [[[BeatBrain sharedBrain] colorScheme] colorForIndex:self.number - 1];
         
         // Clear the grid
@@ -49,13 +48,6 @@
     [newLoop procedurallyGenerateGrid];
     return newLoop;
 }
-
-//- (UIColor *)_getRandomColor {
-//    CGFloat green = (arc4random()%100) *.01;
-//    CGFloat blue = (arc4random()%100) * .01;
-//    CGFloat red = (arc4random()%100) *.01;
-//    return [UIColor colorWithRed:red green:green blue:blue alpha:1];
-//}
 
 - (void)procedurallyGenerateGrid {
    [self _emptyGrid];
@@ -81,4 +73,13 @@
     }
 }
 
+- (NSString *)uniqueId {
+    NSUInteger hash = 0;
+    hash += _length;
+    hash += [_grid hash];
+    hash += [_name hash];
+    hash += _user;
+    hash += _number;
+    return [NSString stringWithFormat:@"%lu", (unsigned long)hash];
+}
 @end
