@@ -12,6 +12,7 @@ static const int kMaxLoops = 10;
 
 @class Loop;
 @class LuvColorScheme;
+@class Instrument;
 
 @protocol BeatBrainDelegate <NSObject>
 
@@ -46,5 +47,6 @@ typedef enum {
 - (void)begin;
 - (void)setScaleType:(ScaleType)type;
 - (void)bpmUpdated;
+- (void)playSingleNote:(NSInteger)note withInstrument:(Instrument *)instrument;
 
 @end

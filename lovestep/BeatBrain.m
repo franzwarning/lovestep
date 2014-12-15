@@ -133,19 +133,42 @@ static BeatBrain *sharedBrain = nil;
         }
     }
     
-    for (SoundGen *soundGen in _soundGens) {
-        if (![soundGen isEqual:_drumSoundGen]) {
-            [soundGen stopPlayingAllNotes];
-        }
-    }
+    NSInteger lastColumn = (beat == 0) ? 15 : beat - 1;
     
     for (Loop *loop in self.loops) {
         if (loop.enabled) {
+            [self _stopPlayingColumn:lastColumn forLoop:loop];
             [self _playColumn:beat forLoop:loop];
         }
     }
     
+    [self _stopPlayingColumn:lastColumn forLoop:_activeLoop];
     [self _playColumn:beat forLoop:_activeLoop];
+}
+
+- (void)_stopPlayingColumn:(NSInteger)column forLoop:(Loop *)loop {
+    for (int j = 0; j < kHeight; j++) {
+        if ([loop.grid[column][j] boolValue]) {
+            
+            //Select midi
+            int step = kHeight - 1 - j;
+            int midi = kBaseMidiNote;
+            if (loop.instrument.type == kInstrumentTypeDrums) {
+                //drum stuff
+                midi = 47 - j;
+                
+            } else {
+                if (self.scale == kScaleTypePentatonic) {
+                    midi = kBaseMidiNote + kPentatonicIntervals[step];
+                } else if (self.scale == kScaleTypeDiatonic) {
+                    midi = kBaseMidiNote + kDiatonicIntervals[step];
+                }
+            }
+            
+            SoundGen *soundGen = [self _soundGenForInstrumentType:loop.instrument.type];
+            [soundGen stopPlayingMidiNote:midi];
+        }
+    }
 }
 
 - (void)_playColumn:(NSInteger)column forLoop:(Loop *)loop {
@@ -182,19 +205,62 @@ static BeatBrain *sharedBrain = nil;
     }
 }
 
-- (void)_playNote:(NSInteger)midiNote withInstrumentType:(InstrumentType)instrumentType velocity:(NSInteger)velocity {
+- (void)playSingleNote:(NSInteger)note withInstrument:(Instrument *)instrument {
     
-    if (instrumentType == kInstrumentTypePiano) {
-        [_pianoSoundGen playMidiNote:midiNote velocity:velocity];
-    } else if (instrumentType == kInstrumentTypeGuitar) {
-        [_guitarSoundGen playMidiNote:midiNote velocity:velocity];
-    } else if (instrumentType == kInstrumentTypeBass) {
-        midiNote -= 12;
-        [_bassSoundGen playMidiNote:midiNote velocity:velocity];
-    } else if (instrumentType == kInstrumentTypeDrums) {
-        [_drumSoundGen playMidiNote:midiNote velocity:velocity];
+    int step = kHeight - 1 - (int)note;
+    int midi = kBaseMidiNote;
+    if (instrument.type == kInstrumentTypeDrums) {
+        //drum stuff
+        midi = 47 - (int)note;
+        
+    } else {
+        if (self.scale == kScaleTypePentatonic) {
+            midi = kBaseMidiNote + kPentatonicIntervals[step];
+        } else if (self.scale == kScaleTypeDiatonic) {
+            midi = kBaseMidiNote + kDiatonicIntervals[step];
+        }
     }
     
+    //Select velocity (mix instruments)
+    int velocity = 90;
+    switch (instrument.type) {
+        case kInstrumentTypeDrums:  velocity = 90; break;
+        case kInstrumentTypeGuitar: velocity = 90; break;
+        case kInstrumentTypeBass:   velocity = 90; break;
+        case kInstrumentTypePiano:  velocity = 70; break;
+    }
+    
+    [self _playNote:midi withInstrumentType:instrument.type velocity:velocity];
+    
+    NSArray *noteInfo = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:midi], [NSNumber numberWithInt:instrument.type], nil];
+    [self performSelector:@selector(_stopPlayingSingleNote:) withObject:noteInfo afterDelay:0.3f];
+    
+}
+
+- (void)_stopPlayingSingleNote:(NSArray *)noteInfo {
+    int midi = [[noteInfo firstObject] intValue];
+    InstrumentType instrumentType = [[noteInfo lastObject]  intValue];
+    SoundGen *soundGen = [self _soundGenForInstrumentType:instrumentType];
+    [soundGen stopPlayingMidiNote:midi];
+}
+
+- (void)_playNote:(NSInteger)midiNote withInstrumentType:(InstrumentType)instrumentType velocity:(NSInteger)velocity {
+    
+    SoundGen *soundGen = [self _soundGenForInstrumentType:instrumentType];
+    [soundGen playMidiNote:midiNote velocity:velocity];
+}
+
+- (SoundGen *)_soundGenForInstrumentType:(InstrumentType)instrumentType {
+    if (instrumentType == kInstrumentTypePiano) {
+        return _pianoSoundGen;
+    } else if (instrumentType == kInstrumentTypeGuitar) {
+        return _guitarSoundGen;
+    } else if (instrumentType == kInstrumentTypeBass) {
+        return _bassSoundGen;
+    } else if (instrumentType == kInstrumentTypeDrums) {
+        return _drumSoundGen;
+    }
+    return nil;
 }
 
 - (void)addLoop:(Loop *)newLoop {

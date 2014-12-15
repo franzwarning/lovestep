@@ -88,6 +88,11 @@ static const NSInteger kControlYPadding = 10;
     NSInteger col = cell.col;
     BOOL isOn = cell.isOn;
     
+    if (isOn) {
+        // Have the beat brain play the note for that cell
+        [[BeatBrain sharedBrain] playSingleNote:cell.row withInstrument:_activeLoop.instrument];
+    }
+    
     if (isOn) _onCount++;
     else _onCount--;
     

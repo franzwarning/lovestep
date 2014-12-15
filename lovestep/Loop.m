@@ -12,11 +12,7 @@
 #import "Colours.h"
 #import "LuvColorScheme.h"
 
-@interface Loop () {
-
-}
-
-@end
+const NSUInteger NUMBER_OF_CHARS = 40 ;
 
 @implementation Loop
 
@@ -30,6 +26,8 @@
         self.number = [[[BeatBrain sharedBrain] loops] count] + 1;
         self.enabled = YES;
         self.color = [[[BeatBrain sharedBrain] colorScheme] colorForIndex:self.number - 1];
+        
+        _uniqueId = [self generateUniqueId];
         
         // Clear the grid
         self.grid = [[NSMutableArray alloc] init];
@@ -73,13 +71,14 @@
     }
 }
 
-- (NSString *)uniqueId {
-    NSUInteger hash = 0;
-    hash += _length;
-    hash += [_grid hash];
-    hash += [_name hash];
-    hash += _user;
-    hash += _number;
-    return [NSString stringWithFormat:@"%lu", (unsigned long)hash];
+- (NSString *)generateUniqueId {
+    static char const possibleChars[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    unichar characters[NUMBER_OF_CHARS];
+    for( int index=0; index < NUMBER_OF_CHARS; ++index )
+    {
+        characters[ index ] = possibleChars[arc4random_uniform(sizeof(possibleChars)-1)];
+    }
+    
+    return [ NSString stringWithCharacters:characters length:NUMBER_OF_CHARS ] ;
 }
 @end
