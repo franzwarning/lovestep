@@ -157,7 +157,7 @@ static BeatBrain *sharedBrain = nil;
                 //drum stuff
                 midi = 47 - j;
                 
-            } else {`
+            } else {
                 if (self.scale == kScaleTypePentatonic) {
                     midi = kBaseMidiNote + kPentatonicIntervals[step];
                 } else if (self.scale == kScaleTypeDiatonic) {
