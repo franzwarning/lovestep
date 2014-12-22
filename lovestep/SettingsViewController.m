@@ -13,6 +13,11 @@
 
 @interface SettingsViewController () {
     UILabel *bpmLabel;
+    LuvButton *_increaseBPMButton;
+    LuvButton *_decreaseBPMButton;
+    LuvButton *_penatonicButton;
+    LuvButton *_diatonicButton;
+    LuvButton *_inviteButton;
 }
 
 @end
@@ -107,8 +112,6 @@
     [inviteButton setTitleColor:[UIColor colorWithHue:0.57 saturation:0.76 brightness:0.86 alpha:1] forState:UIControlStateNormal];
     [inviteButton addTarget:self action:@selector(_inviteButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:inviteButton];
-    
-    
 }
 
 - (void)_inviteButtonClicked:(id)sender {
